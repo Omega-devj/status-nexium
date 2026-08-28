@@ -1,113 +1,94 @@
 {
-  "genereA": "2026-08-28T17:44:28.491Z",
-  "etat": "degrade",
-  "resume": "Les messages prives mettent du temps a s ouvrir",
+  "genereA": "2026-08-28T18:10:31.798Z",
+  "etat": "operationnel",
+  "resume": "Tous les services sont operationnels",
   "composants": [
     {
       "cle": "client",
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 257,
+      "latenceMs": 90,
       "info": "v153",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:44:28.491Z"
+      "verifieA": "2026-08-28T18:10:31.798Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
-      "critique": false,
-      "latenceMs": 171,
+      "critique": true,
+      "latenceMs": 19,
       "info": "438 868 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:44:28.491Z"
+      "verifieA": "2026-08-28T18:10:31.798Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 17,
+      "latenceMs": 15,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:44:28.491Z"
+      "verifieA": "2026-08-28T18:10:31.798Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 17,
+      "latenceMs": 16,
       "info": "2 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:44:28.491Z"
+      "verifieA": "2026-08-28T18:10:31.798Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 165,
+      "latenceMs": 15,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:44:28.491Z"
+      "verifieA": "2026-08-28T18:10:31.798Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 231,
+      "latenceMs": 57,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:44:28.491Z"
+      "verifieA": "2026-08-28T18:10:31.798Z"
+    },
+    {
+      "cle": "alertes",
+      "nom": "Alertes et administration",
+      "detail": "Ce qui fait apparaitre un bandeau dans le client",
+      "critique": true,
+      "latenceMs": 113,
+      "etat": "operationnel",
+      "_echecs": 0,
+      "verifieA": "2026-08-28T18:10:31.798Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 251,
+      "latenceMs": 210,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:44:28.491Z"
-    },
-    {
-      "cle": "communaute",
-      "nom": "Renseignement communautaire",
-      "detail": "Les domaines signales par les autres utilisateurs",
-      "critique": false,
-      "latenceMs": 227,
-      "etat": "operationnel",
-      "_echecs": 0,
-      "verifieA": "2026-08-28T17:44:28.491Z"
+      "verifieA": "2026-08-28T18:10:31.798Z"
     }
   ],
   "incidents": [
-    {
-      "id": "3d86e5e1-ac40-4e60-af4d-5ae753ad6dd3",
-      "source": "admin",
-      "composant": "client",
-      "titre": "Les messages prives mettent du temps a s ouvrir",
-      "gravite": "majeur",
-      "etat": "enquete",
-      "debut": "2026-08-28T17:44:27.355374+00:00",
-      "fin": null,
-      "versionsTouchees": "v153",
-      "resume": "Certains utilisateurs constatent plusieurs secondes de latence a l ouverture d une conversation privee. Le reste du client fonctionne normalement.",
-      "maj": [
-        {
-          "a": "2026-08-28T17:44:28.029Z",
-          "etat": "enquete",
-          "texte": "Signalement recu, reproduction en cours."
-        }
-      ]
-    },
     {
       "id": "simulation",
       "auto": true,

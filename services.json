@@ -1,0 +1,67 @@
+{
+  "_lisezmoi": "Source de verite unique des services surveilles. Lue par scripts/probe.mjs (surveillance GitHub Actions) ET par index.html (verification en direct dans le navigateur). Ne pas dupliquer cette liste ailleurs.",
+  "services": [
+    {
+      "cle": "client",
+      "nom": "Mise a jour du client",
+      "detail": "Le fichier que chaque client retelecharge au demarrage",
+      "url": "https://raw.githubusercontent.com/Omega-devj/nexium-client/refs/heads/main/resources/equicord/renderer.js",
+      "critique": true,
+      "sondeDirecte": "tete"
+    },
+    {
+      "cle": "blocklist",
+      "nom": "Protection des liens",
+      "detail": "La base de domaines malveillants",
+      "url": "https://raw.githubusercontent.com/Omega-devj/blacklist-url-nexium-client/refs/heads/main/blocklist.txt",
+      "critique": true,
+      "sondeDirecte": "tete"
+    },
+    {
+      "cle": "banlist",
+      "nom": "Liste de bannissement",
+      "detail": "Le verrou des comptes bannis",
+      "url": "https://raw.githubusercontent.com/Omega-devj/bl-client-nexium/refs/heads/main/ban",
+      "sondeDirecte": "texte"
+    },
+    {
+      "cle": "changelog",
+      "nom": "Notes de version",
+      "detail": "Ce que le client affiche apres une mise a jour",
+      "url": "https://raw.githubusercontent.com/Omega-devj/changelog-client-nexium/refs/heads/main/changelog.txt",
+      "sondeDirecte": "texte"
+    },
+    {
+      "cle": "musique",
+      "nom": "Bibliotheque musicale",
+      "detail": "Les pistes proposees dans Nexium Music",
+      "url": "https://raw.githubusercontent.com/Omega-devj/music-client-nexium/refs/heads/main/music.txt",
+      "sondeDirecte": "tete"
+    },
+    {
+      "cle": "sponsor",
+      "nom": "Partenariats",
+      "detail": "Le contenu de la page Sponsor",
+      "url": "https://raw.githubusercontent.com/Omega-devj/inv-sponsor-nexium/refs/heads/main/sponsor",
+      "sondeDirecte": "tete"
+    },
+    {
+      "cle": "alertes",
+      "nom": "Alertes et administration",
+      "detail": "Ce qui fait apparaitre un bandeau dans le client",
+      "url": "https://emcoqnvxriyrchmfpunq.supabase.co/rest/v1/nx_alertes?select=id&limit=1",
+      "critique": true,
+      "cle_api": true,
+      "sondeDirecte": "json"
+    },
+    {
+      "cle": "signalements",
+      "nom": "Signalements",
+      "detail": "L envoi d un domaine suspect depuis le client",
+      "url": "https://emcoqnvxriyrchmfpunq.supabase.co/functions/v1/report",
+      "methode": "OPTIONS",
+      "accepte": [200, 204, 400, 401, 405],
+      "sondeDirecte": "tete"
+    }
+  ]
+}

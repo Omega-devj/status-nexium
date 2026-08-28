@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Statut · Nexium Client</title>
-<meta name="description" content="Etat des services du Nexium Client : mise a jour, protection des liens, signalements.">
+<meta name="description" content="Etat des services du Nexium Client : mise a jour, protection des liens, alertes en cours.">
 <style>
   :root{
     --fond:#0b0b0c; --carte:#121214; --carte2:#17171a; --ligne:#26262b;
     --texte:#ececee; --doux:#9a9aa4; --faible:#6a6a73;
-    --or:#e6c48a; --vert:#5fb37a; --ambre:#d9a441; --rouge:#d6484a; --gris:#3a3a41;
+    --or:#e6c48a; --vert:#5fb37a; --ambre:#d9a441; --rouge:#d6484a; --bleu:#6a8fd6; --gris:#3a3a41;
     --r:14px;
   }
   @media (prefers-color-scheme: light){
     :root{ --fond:#f7f7f8; --carte:#fff; --carte2:#fafafb; --ligne:#e4e4e8;
-           --texte:#1a1a1d; --doux:#5e5e68; --faible:#8a8a94; --or:#9a7318; }
+           --texte:#1a1a1d; --doux:#5e5e68; --faible:#8a8a94; --or:#9a7318; --gris:#d8d8de; }
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--fond);color:var(--texte);
@@ -31,7 +31,8 @@
 
   .banniere{border-radius:var(--r);padding:24px 26px;margin-bottom:14px;
     border:1px solid var(--ligne);background:var(--carte);display:flex;gap:18px;align-items:center}
-  .banniere .rond{width:42px;height:42px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center}
+  .banniere .rond{width:42px;height:42px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+    font-size:19px;font-weight:700}
   .banniere h1{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em}
   .banniere p{margin:3px 0 0;color:var(--doux);font-size:13px}
   .b-operationnel{border-color:rgba(95,179,122,.4)} .b-operationnel .rond{background:rgba(95,179,122,.16);color:var(--vert)}
@@ -40,7 +41,8 @@
   .b-inconnu .rond{background:var(--gris);color:var(--doux)}
 
   h2{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--faible);margin:34px 0 12px}
+    color:var(--faible);margin:34px 0 12px;display:flex;align-items:center;gap:9px}
+  h2 em{font-style:normal;color:var(--vert);font-size:10px;letter-spacing:.1em}
 
   .carte{background:var(--carte);border:1px solid var(--ligne);border-radius:var(--r);overflow:hidden}
   .comp{padding:16px 20px;border-bottom:1px solid var(--ligne)}
@@ -49,7 +51,7 @@
   .comp-nom{font-weight:600}
   .comp-detail{color:var(--faible);font-size:12.5px}
   .comp-etat{margin-left:auto;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
-  .e-operationnel{color:var(--vert)} .e-degrade{color:var(--ambre)} .e-panne{color:var(--rouge)}
+  .e-operationnel{color:var(--vert)} .e-degrade{color:var(--ambre)} .e-panne{color:var(--rouge)} .e-inconnu{color:var(--doux)}
   .comp-info{color:var(--doux);font-size:12.5px;margin-top:3px}
 
   .barres{display:flex;gap:2px;margin-top:12px;height:30px;align-items:stretch}
@@ -69,21 +71,28 @@
   .g-critique{color:var(--rouge);border-color:rgba(214,72,74,.5);background:rgba(214,72,74,.1)}
   .g-majeur{color:var(--ambre);border-color:rgba(217,164,65,.5);background:rgba(217,164,65,.1)}
   .g-mineur{color:var(--doux);border-color:var(--ligne)}
+  .g-maintenance{color:var(--bleu);border-color:rgba(106,143,214,.5);background:rgba(106,143,214,.1)}
   .g-resolu{color:var(--vert);border-color:rgba(95,179,122,.45);background:rgba(95,179,122,.1)}
   .inc h3{margin:0;font-size:15.5px;font-weight:650}
   .inc-date{color:var(--faible);font-size:12px;margin-left:auto}
   .inc-resume{color:var(--doux);font-size:13.5px;margin:8px 0 0}
+  .inc-meta{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+  .etiq{font-size:11px;color:var(--doux);border:1px solid var(--ligne);border-radius:99px;padding:2px 9px}
   .maj{margin:12px 0 0;padding:0 0 0 16px;border-left:2px solid var(--ligne);list-style:none}
   .maj li{margin:0 0 9px;font-size:13px;color:var(--doux)}
   .maj li:last-child{margin-bottom:0}
   .maj b{color:var(--texte);font-weight:650;text-transform:uppercase;font-size:10.5px;letter-spacing:.08em}
-  .maj time{color:var(--faible);font-size:11.5px;margin-left:6px}
+  .maj time{color:var(--faible);font-size:11.5px;margin-left:7px}
 
   .vide{padding:26px 20px;color:var(--faible);font-size:13.5px;text-align:center}
-  footer{margin-top:38px;color:var(--faible);font-size:12.5px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  footer{margin-top:38px;color:var(--faible);font-size:12.5px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   footer a{color:var(--doux)}
-  .pastille{width:7px;height:7px;border-radius:50%;background:var(--vert);display:inline-block;margin-right:6px}
+  .pastille{width:7px;height:7px;border-radius:50%;background:var(--vert);display:inline-block;margin-right:7px;
+    animation:bat 2.4s ease-in-out infinite}
+  @keyframes bat{0%,100%{opacity:1}50%{opacity:.35}}
+  .perime{color:var(--ambre)}
   @media (max-width:560px){ .comp-etat{margin-left:0;width:100%} .inc-date{margin-left:0;width:100%} }
+  @media (prefers-reduced-motion: reduce){ .pastille{animation:none} }
 </style>
 </head>
 <body>
@@ -97,27 +106,23 @@
   <div id="banniere" class="banniere b-inconnu">
     <div class="rond" id="icone">…</div>
     <div>
-      <h1 id="titre">Lecture de l etat…</h1>
-      <p id="sous">Interrogation du depot de statut</p>
+      <h1 id="titre">Verification en cours…</h1>
+      <p id="sous">Interrogation des services</p>
     </div>
   </div>
 
   <div id="zone-ouverts"></div>
 
-  <h2>Services</h2>
-  <div class="carte" id="composants">
-    <div class="vide">Chargement…</div>
-  </div>
+  <h2>Services <em id="direct"></em></h2>
+  <div class="carte" id="composants"><div class="vide">Verification…</div></div>
 
   <h2>Historique des incidents</h2>
-  <div class="carte" id="historique">
-    <div class="vide">Chargement…</div>
-  </div>
+  <div class="carte" id="historique"><div class="vide">Chargement…</div></div>
 
   <footer>
-    <span><span class="pastille"></span><span id="maj">—</span></span>
+    <span><span class="pastille" id="pastille"></span><span id="maj">—</span></span>
     <span>·</span>
-    <span>Verification automatique toutes les 5 minutes</span>
+    <span id="cadence">Verification a chaque ouverture de la page</span>
     <span>·</span>
     <a href="https://github.com/Omega-devj/status-nexium" target="_blank" rel="noopener">Source</a>
   </footer>
@@ -125,75 +130,129 @@
 
 <script>
 (function () {
+  var SUPA = 'https://emcoqnvxriyrchmfpunq.supabase.co';
+  var CLE = 'sb_publishable_mhLyot9Dv_VCtWpCbYpngg_evMB79C3';
+  var CHAMPS = 'id,titre,resume,gravite,etat,composant,versions_touchees,correctif,debut,fin,maj';
+  var LENT = 6000;
+  var DELAI = 15000;
+
   var ICONES = { operationnel: '✔', degrade: '!', panne: '×', inconnu: '…' };
-  var MOTS = {
-    operationnel: 'Tous les services sont operationnels',
-    degrade: 'Service degrade',
-    panne: 'Panne en cours',
-    inconnu: 'Etat indisponible'
-  };
+  var MOTS = { operationnel: 'Tous les services sont operationnels', degrade: 'Service degrade',
+               panne: 'Panne en cours', inconnu: 'Etat indisponible' };
   var COURT = { operationnel: 'Operationnel', degrade: 'Degrade', panne: 'Panne', inconnu: 'Inconnu' };
-  var ETATINC = { enquete: 'En cours d analyse', identifie: 'Cause identifiee', surveille: 'Sous surveillance', resolu: 'Resolu' };
+  var ETATINC = { enquete: 'En cours d analyse', identifie: 'Cause identifiee',
+                  surveille: 'Sous surveillance', resolu: 'Resolu' };
+  var GRAV = { critique: 'Panne critique', majeur: 'Incident majeur',
+               mineur: 'Incident mineur', maintenance: 'Maintenance' };
 
   function e(t, c, x) { var n = document.createElement(t); if (c) n.className = c; if (x != null) n.textContent = x; return n; }
   function dt(s) { try { return new Date(s).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short' }); } catch (_) { return s; } }
   function dj(s) { try { return new Date(s).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }); } catch (_) { return s; } }
   function ecoule(s) {
     var d = Math.round((Date.now() - new Date(s).getTime()) / 1000);
+    if (d < 10) return 'a l instant';
     if (d < 90) return 'il y a ' + d + ' s';
     if (d < 5400) return 'il y a ' + Math.round(d / 60) + ' min';
     if (d < 172800) return 'il y a ' + Math.round(d / 3600) + ' h';
     return 'il y a ' + Math.round(d / 86400) + ' j';
   }
+  function jsonp(url, opts) {
+    var c = new AbortController();
+    var t = setTimeout(function () { c.abort(); }, DELAI);
+    var o = opts || {};
+    o.signal = c.signal; o.cache = 'no-store';
+    return fetch(url, o).then(function (r) { clearTimeout(t); return r; },
+                              function (x) { clearTimeout(t); throw x; });
+  }
 
-  function banniere(etat, resume) {
+  // ---------------------------------------------------------------- sondes
+  // La page verifie elle-meme, a chaque ouverture. Elle ne depend donc pas
+  // du rythme de la surveillance GitHub, qui reste la pour l historique.
+  function sonder(sv) {
+    var t0 = Date.now();
+    var opts = { method: sv.methode || (sv.sondeDirecte === 'tete' ? 'HEAD' : 'GET') };
+    if (sv.cle_api) opts.headers = { apikey: CLE, Accept: 'application/json' };
+    return jsonp(sv.url, opts).then(function (r) {
+      var ms = Date.now() - t0;
+      var accepte = sv.accepte || [200];
+      var res = { cle: sv.cle, nom: sv.nom, detail: sv.detail, critique: !!sv.critique,
+                  latenceMs: ms, verifieA: new Date().toISOString(), direct: true };
+      if (accepte.indexOf(r.status) < 0) { res.etat = 'panne'; res.pourquoi = 'reponse HTTP ' + r.status; return res; }
+      var taille = r.headers.get('content-length');
+      res.etat = ms > LENT ? 'degrade' : 'operationnel';
+      if (res.etat === 'degrade') res.pourquoi = 'reponse lente';
+      if (taille) {
+        var o = parseInt(taille, 10);
+        res.info = o < 1024 ? o + ' o'
+          : (o < 921600 ? Math.round(o / 1024) + ' ko'
+                        : Math.round(o / 1048576 * 10) / 10 + ' Mo');
+      }
+      return res;
+    }).catch(function (x) {
+      return { cle: sv.cle, nom: sv.nom, detail: sv.detail, critique: !!sv.critique,
+               latenceMs: Date.now() - t0, verifieA: new Date().toISOString(), direct: true,
+               etat: 'panne', pourquoi: x && x.name === 'AbortError' ? 'aucune reponse' : 'injoignable' };
+    });
+  }
+
+  function alertes() {
+    return jsonp(SUPA + '/rest/v1/nx_alertes?select=' + CHAMPS + '&order=debut.desc&limit=40',
+      { headers: { apikey: CLE, Accept: 'application/json' } })
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(function (l) {
+        return l.map(function (a) {
+          return { id: a.id, source: 'admin', composant: a.composant, titre: a.titre,
+                   gravite: a.gravite, etat: a.etat, debut: a.debut, fin: a.fin,
+                   versionsTouchees: a.versions_touchees, correctif: a.correctif,
+                   resume: a.resume, maj: Array.isArray(a.maj) ? a.maj : [] };
+        });
+      }).catch(function () { return null; });
+  }
+
+  // ---------------------------------------------------------------- rendu
+  function banniere(etat, titre, sous) {
     var b = document.getElementById('banniere');
     b.className = 'banniere b-' + (ICONES[etat] ? etat : 'inconnu');
     document.getElementById('icone').textContent = ICONES[etat] || ICONES.inconnu;
-    document.getElementById('titre').textContent = MOTS[etat] || MOTS.inconnu;
-    document.getElementById('sous').textContent = resume || '';
+    document.getElementById('titre').textContent = titre || MOTS[etat] || MOTS.inconnu;
+    document.getElementById('sous').textContent = sous || '';
+    document.title = (etat === 'operationnel' ? '' : '● ') + 'Statut · Nexium Client';
   }
 
   function barres(cle, histo) {
     var h = (histo && histo[cle]) || {};
-    var enveloppe = e('div');
-    var ligne = e('div', 'barres');
-    var jours = 90, vus = 0;
-    for (var i = jours - 1; i >= 0; i--) {
+    var env = e('div'), ligne = e('div', 'barres'), vus = 0;
+    for (var i = 89; i >= 0; i--) {
       var d = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
       var c = h[d], b = e('div', 'barre');
       if (c) {
         vus++;
         var tot = c.ok + c.degrade + c.panne;
-        if (c.panne) b.className = 'barre ko';
-        else if (c.degrade) b.className = 'barre mix';
-        else b.className = 'barre ok';
+        b.className = 'barre ' + (c.panne ? 'ko' : (c.degrade ? 'mix' : 'ok'));
         b.setAttribute('data-t', dj(d) + ' · ' + Math.round(c.ok / tot * 100) + '% operationnel');
-      } else {
-        b.setAttribute('data-t', dj(d) + ' · aucune donnee');
-      }
+      } else b.setAttribute('data-t', dj(d) + ' · aucune donnee');
       ligne.appendChild(b);
     }
-    enveloppe.appendChild(ligne);
+    env.appendChild(ligne);
     var ech = e('div', 'echelle');
     ech.appendChild(e('span', null, vus > 1 ? 'il y a 90 jours' : 'surveillance demarree'));
     ech.appendChild(e('span', null, 'aujourd hui'));
-    enveloppe.appendChild(ech);
-    return enveloppe;
+    env.appendChild(ech);
+    return env;
   }
 
-  function rendreComposants(s, histo) {
+  function rendreComposants(comps, histo) {
     var z = document.getElementById('composants');
     z.innerHTML = '';
-    (s.composants || []).forEach(function (c) {
-      var d = e('div', 'comp');
-      var t = e('div', 'comp-tete');
+    comps.forEach(function (c) {
+      var d = e('div', 'comp'), t = e('div', 'comp-tete');
       t.appendChild(e('span', 'comp-nom', c.nom));
       if (c.detail) t.appendChild(e('span', 'comp-detail', c.detail));
       t.appendChild(e('span', 'comp-etat e-' + c.etat, COURT[c.etat] || c.etat));
       d.appendChild(t);
       var info = c.pourquoi || c.info;
-      if (info) d.appendChild(e('div', 'comp-info', info + (c.latenceMs != null ? ' · ' + c.latenceMs + ' ms' : '')));
+      var bas = (info ? info : '') + (c.latenceMs != null ? (info ? ' · ' : '') + c.latenceMs + ' ms' : '');
+      if (bas) d.appendChild(e('div', 'comp-info', bas));
       d.appendChild(barres(c.cle, histo));
       z.appendChild(d);
     });
@@ -201,21 +260,27 @@
   }
 
   function carteIncident(i) {
-    var d = e('div', 'inc');
-    var t = e('div', 'inc-tete');
+    var d = e('div', 'inc'), t = e('div', 'inc-tete');
     var resolu = !!i.fin || i.etat === 'resolu';
-    t.appendChild(e('span', 'puce ' + (resolu ? 'g-resolu' : 'g-' + (i.gravite || 'mineur')), resolu ? 'Resolu' : (i.gravite || 'mineur')));
+    t.appendChild(e('span', 'puce ' + (resolu ? 'g-resolu' : 'g-' + (i.gravite || 'mineur')),
+      resolu ? 'Resolu' : (GRAV[i.gravite] || i.gravite || 'mineur')));
     t.appendChild(e('h3', null, i.titre));
     t.appendChild(e('span', 'inc-date', dj(i.debut)));
     d.appendChild(t);
     if (i.resume) d.appendChild(e('p', 'inc-resume', i.resume));
+    if (i.versionsTouchees || i.correctif) {
+      var m = e('div', 'inc-meta');
+      if (i.versionsTouchees) m.appendChild(e('span', 'etiq', 'Versions touchees : ' + i.versionsTouchees));
+      if (i.correctif) m.appendChild(e('span', 'etiq', 'Corrige en ' + i.correctif));
+      d.appendChild(m);
+    }
     if (i.maj && i.maj.length) {
       var ul = e('ul', 'maj');
-      i.maj.slice().reverse().forEach(function (m) {
+      i.maj.slice().reverse().forEach(function (u) {
         var li = e('li');
-        li.appendChild(e('b', null, ETATINC[m.etat] || m.etat || 'Mise a jour'));
-        li.appendChild(e('time', null, dt(m.a)));
-        li.appendChild(e('div', null, m.texte));
+        li.appendChild(e('b', null, ETATINC[u.etat] || u.etat || 'Mise a jour'));
+        li.appendChild(e('time', null, dt(u.a)));
+        li.appendChild(e('div', null, u.texte));
         ul.appendChild(li);
       });
       d.appendChild(ul);
@@ -223,9 +288,9 @@
     return d;
   }
 
-  function rendreIncidents(s) {
-    var ouverts = (s.incidents || []).filter(function (i) { return !i.fin && i.etat !== 'resolu'; });
-    var passes = (s.incidents || []).filter(function (i) { return i.fin || i.etat === 'resolu'; });
+  function rendreIncidents(inc) {
+    var ouverts = inc.filter(function (i) { return !i.fin && i.etat !== 'resolu'; });
+    var passes = inc.filter(function (i) { return i.fin || i.etat === 'resolu'; });
 
     var zo = document.getElementById('zone-ouverts');
     zo.innerHTML = '';
@@ -235,72 +300,72 @@
       ouverts.forEach(function (i) { c.appendChild(carteIncident(i)); });
       zo.appendChild(c);
     }
-
     var zh = document.getElementById('historique');
     zh.innerHTML = '';
     if (!passes.length) zh.appendChild(e('div', 'vide', 'Aucun incident enregistre.'));
     else passes.slice(0, 25).forEach(function (i) { zh.appendChild(carteIncident(i)); });
+    return ouverts;
   }
 
-  var SUPA = 'https://emcoqnvxriyrchmfpunq.supabase.co';
-  var CLE = 'sb_publishable_mhLyot9Dv_VCtWpCbYpngg_evMB79C3';
-
-  // Les alertes ouvertes par un administrateur viennent de Supabase, en direct.
-  // status.json en garde une copie : si Supabase ne repond pas, on l utilise.
-  function alertesAdmin() {
-    var champs = 'id,titre,resume,gravite,etat,composant,versions_touchees,correctif,debut,fin,maj';
-    return fetch(SUPA + '/rest/v1/nx_alertes?select=' + champs + '&order=debut.desc&limit=40',
-      { headers: { apikey: CLE, Accept: 'application/json' }, cache: 'no-store' })
-      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
-      .then(function (l) {
-        return l.map(function (a) {
-          return {
-            id: a.id, source: 'admin', composant: a.composant, titre: a.titre,
-            gravite: a.gravite, etat: a.etat, debut: a.debut, fin: a.fin,
-            versionsTouchees: a.versions_touchees, correctif: a.correctif,
-            resume: a.resume, maj: Array.isArray(a.maj) ? a.maj : []
-          };
-        });
-      })
-      .catch(function () { return null; });
-  }
-
+  // ---------------------------------------------------------------- cycle
+  var enCours = false;
   function charger() {
+    if (enCours) return;
+    enCours = true;
     var q = '?t=' + Date.now();
     Promise.all([
-      fetch('status.json' + q, { cache: 'no-store' }).then(function (r) { return r.json(); }),
+      fetch('services.json' + q, { cache: 'no-store' }).then(function (r) { return r.json(); }),
       fetch('history.json' + q, { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return {}; }),
-      alertesAdmin()
+      fetch('status.json' + q, { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return null; }),
+      alertes()
     ]).then(function (res) {
-      var s = res[0], histo = res[1], adm = res[2];
+      var sv = res[0].services, histo = res[1], enregistre = res[2], adm = res[3];
+      return Promise.all(sv.map(sonder)).then(function (comps) {
+        enCours = false;
 
-      if (adm) {
-        s.incidents = (s.incidents || []).filter(function (i) { return i.source !== 'admin'; }).concat(adm);
-        s.incidents.sort(function (a, b) { return String(b.debut).localeCompare(String(a.debut)); });
-      }
-      var vivantes = (s.incidents || []).filter(function (i) { return !i.fin && i.etat !== 'resolu'; });
-      if (vivantes.length && s.etat === 'operationnel') {
-        s.etat = vivantes.some(function (i) { return i.gravite === 'critique'; }) ? 'panne' : 'degrade';
-        s.resume = vivantes[0].titre;
-      }
-      var n = (s.composants || []).length;
-      banniere(s.etat, s.etat === 'operationnel'
-        ? n + ' service' + (n > 1 ? 's' : '') + ' surveille' + (n > 1 ? 's' : '') + ' · verifie ' + ecoule(s.genereA)
-        : s.resume);
-      rendreComposants(s, histo);
-      rendreIncidents(s);
-      document.getElementById('maj').textContent = 'Derniere verification ' + ecoule(s.genereA);
-      document.title = (s.etat === 'operationnel' ? '' : '● ') + 'Statut · Nexium Client';
+        var inc = [];
+        if (enregistre && enregistre.incidents)
+          inc = enregistre.incidents.filter(function (i) { return adm ? i.source !== 'admin' : true; });
+        if (adm) inc = inc.concat(adm);
+        inc.sort(function (a, b) { return String(b.debut).localeCompare(String(a.debut)); });
+
+        var ouverts = rendreIncidents(inc);
+        rendreComposants(comps, histo);
+
+        var pire = comps.some(function (c) { return c.etat === 'panne' && c.critique; }) ? 'panne'
+          : comps.some(function (c) { return c.etat !== 'operationnel'; }) ? 'degrade' : 'operationnel';
+        if (ouverts.length) {
+          var crit = ouverts.some(function (i) { return i.gravite === 'critique'; });
+          if (crit) pire = 'panne'; else if (pire === 'operationnel') pire = 'degrade';
+        }
+
+        var n = comps.length;
+        if (pire === 'operationnel') banniere(pire, null, n + ' services verifies a l instant');
+        else banniere(pire, ouverts.length ? ouverts[0].titre : null,
+          ouverts.length ? (ouverts[0].resume || '').slice(0, 160)
+            : comps.filter(function (c) { return c.etat !== 'operationnel'; })
+                   .map(function (c) { return c.nom; }).join(', '));
+
+        document.getElementById('direct').textContent = 'verifies en direct';
+        document.getElementById('maj').textContent = 'Verifie ' + ecoule(new Date().toISOString());
+        var cad = document.getElementById('cadence');
+        if (enregistre && enregistre.genereA) {
+          var age = Date.now() - new Date(enregistre.genereA).getTime();
+          cad.textContent = 'Historique mis a jour ' + ecoule(enregistre.genereA);
+          cad.className = age > 3 * 3600000 ? 'perime' : '';
+        }
+      });
     }).catch(function () {
-      banniere('inconnu', 'Impossible de lire le fichier de statut. Le depot est peut-etre inaccessible.');
+      enCours = false;
+      banniere('inconnu', null, 'Impossible de verifier les services depuis ce navigateur.');
       document.getElementById('composants').innerHTML = '<div class="vide">Etat indisponible.</div>';
-      document.getElementById('historique').innerHTML = '<div class="vide">Etat indisponible.</div>';
     });
   }
 
   charger();
-  setInterval(charger, 60000);
+  setInterval(charger, 45000);
   document.addEventListener('visibilitychange', function () { if (!document.hidden) charger(); });
+  window.addEventListener('focus', charger);
 })();
 </script>
 </body>

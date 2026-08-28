@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -12,85 +12,39 @@ const SEUIL_PANNE = 2; // nombre de passages en echec avant d ouvrir un incident
 
 // ---------------------------------------------------------------- composants
 
-const COMPOSANTS = [
-  {
-    cle: 'client',
-    nom: 'Mise a jour du client',
-    detail: 'Le fichier que chaque client retelecharge au demarrage',
-    url: `${RAW}/nexium-client/refs/heads/main/resources/equicord/renderer.js`,
-    critique: true,
-    async verifier(txt) {
-      if (txt.length < 500000) return 'fichier trop court (' + txt.length + ' car.)';
-      const v = txt.match(/_NXUP\.VERSION="(\d+)"/);
-      if (!v) return 'numero de version absent';
-      const mods = (txt.match(/var _NX[A-Za-z]*=window\._NX/g) || []).length;
-      if (mods < 20) return 'seulement ' + mods + ' modules declares';
-      const attendu = nxSum(txt);
-      const sum = (await texte(`${RAW}/nexium-client/refs/heads/main/resources/equicord/renderer.js.nxsum`)).trim();
-      if (sum !== attendu) return 'somme de controle incoherente (' + sum + ' vs ' + attendu + ')';
-      return { info: 'v' + v[1] };
-    }
+const PARTAGE = JSON.parse(readFileSync(join(RACINE, 'services.json'), 'utf8')).services;
+
+// Verifications de fond, propres a la surveillance : elles telechargent le
+// contenu, ce que la page ne fait pas. Le navigateur se contente d un HEAD.
+const PROFOND = {
+  async client(txt) {
+    if (txt.length < 500000) return 'fichier trop court (' + txt.length + ' car.)';
+    const v = txt.match(/_NXUP\.VERSION="(\d+)"/);
+    if (!v) return 'numero de version absent';
+    const mods = (txt.match(/var _NX[A-Za-z]*=window\._NX/g) || []).length;
+    if (mods < 20) return 'seulement ' + mods + ' modules declares';
+    const attendu = nxSum(txt);
+    const sum = (await texte(PARTAGE.find(x => x.cle === 'client').url + '.nxsum')).trim();
+    if (sum !== attendu) return 'somme de controle incoherente (' + sum + ' vs ' + attendu + ')';
+    return { info: 'v' + v[1] };
   },
-  {
-    cle: 'blocklist',
-    nom: 'Protection des liens',
-    detail: 'La base de domaines malveillants',
-    url: `${RAW}/blacklist-url-nexium-client/refs/heads/main/blocklist.txt`,
-    verifier(txt) {
-      const n = txt.split('\n').length;
-      if (n < 1000) return 'liste anormalement courte (' + n + ' lignes)';
-      if (/^(www\.)?discord\.(com|gg)$/m.test(txt)) return 'un domaine Discord legitime est dans la liste';
-      return { info: n.toLocaleString('fr-FR') + ' domaines' };
-    }
+  blocklist(txt) {
+    const n = txt.split('\n').length;
+    if (n < 1000) return 'liste anormalement courte (' + n + ' lignes)';
+    if (/^(www\.)?discord\.(com|gg)$/m.test(txt)) return 'un domaine Discord legitime est dans la liste';
+    return { info: n.toLocaleString('fr-FR') + ' domaines' };
   },
-  {
-    cle: 'banlist',
-    nom: 'Liste de bannissement',
-    detail: 'Le verrou des comptes bannis',
-    url: `${RAW}/bl-client-nexium/refs/heads/main/ban`,
-    verifier(txt) {
-      if (txt.length > 200000) return 'liste anormalement longue';
-      return { info: txt.trim() ? txt.trim().split('\n').length + ' entree(s)' : 'vide' };
-    }
+  banlist(txt) {
+    if (txt.length > 200000) return 'liste anormalement longue';
+    return { info: txt.trim() ? txt.trim().split('\n').length + ' entree(s)' : 'vide' };
   },
-  {
-    cle: 'changelog',
-    nom: 'Notes de version',
-    detail: 'Ce que le client affiche apres une mise a jour',
-    url: `${RAW}/changelog-client-nexium/refs/heads/main/changelog.txt`,
-    verifier(txt) {
-      if (!txt.trim()) return 'changelog vide';
-      return { info: (txt.match(/^## /gm) || []).length + ' version(s)' };
-    }
-  },
-  {
-    cle: 'musique',
-    nom: 'Bibliotheque musicale',
-    detail: 'Les pistes proposees dans Nexium Music',
-    url: `${RAW}/music-client-nexium/refs/heads/main/music.txt`
-  },
-  {
-    cle: 'sponsor',
-    nom: 'Partenariats',
-    detail: 'Le contenu de la page Sponsor',
-    url: `${RAW}/inv-sponsor-nexium/refs/heads/main/sponsor`
-  },
-  {
-    cle: 'signalements',
-    nom: 'Signalements',
-    detail: 'L envoi d un domaine suspect depuis le client',
-    url: `${SUPA}/report`,
-    methode: 'OPTIONS',
-    accepte: [200, 204, 400, 401, 405]
-  },
-  {
-    cle: 'communaute',
-    nom: 'Renseignement communautaire',
-    detail: 'Les domaines signales par les autres utilisateurs',
-    url: `${SUPA}/community`,
-    accepte: [200, 204, 400, 401, 405]
+  changelog(txt) {
+    if (!txt.trim()) return 'changelog vide';
+    return { info: (txt.match(/^## /gm) || []).length + ' version(s)' };
   }
-];
+};
+
+const COMPOSANTS = PARTAGE.map(sv => ({ ...sv, verifier: PROFOND[sv.cle] || null }));
 
 // ---------------------------------------------------------------- utilitaires
 
@@ -133,7 +87,9 @@ async function sonder(c) {
       method: c.methode || 'GET',
       signal: ctrl.signal,
       cache: 'no-store',
-      headers: { 'User-Agent': 'nexium-status/1' }
+      headers: c.cle_api
+        ? { 'User-Agent': 'nexium-status/1', apikey: CLE_PUBLIQUE, Accept: 'application/json' }
+        : { 'User-Agent': 'nexium-status/1' }
     });
     res.latenceMs = Date.now() - t0;
     const ok = (c.accepte || [200]).includes(r.status);

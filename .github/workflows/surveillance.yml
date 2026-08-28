@@ -2,8 +2,10 @@ name: Surveillance
 
 on:
   schedule:
-    # toutes les 5 minutes (GitHub peut retarder un peu les taches planifiees)
-    - cron: '*/5 * * * *'
+    # Toutes les 15 minutes. GitHub retarde souvent les taches planifiees et en
+    # saute sous charge : ce rythme sert a l historique, pas a la fraicheur.
+    # La page verifie les services elle-meme a chaque ouverture.
+    - cron: '*/15 * * * *'
   workflow_dispatch:
   push:
     branches: [main]
