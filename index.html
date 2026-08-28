@@ -242,13 +242,47 @@
     else passes.slice(0, 25).forEach(function (i) { zh.appendChild(carteIncident(i)); });
   }
 
+  var SUPA = 'https://emcoqnvxriyrchmfpunq.supabase.co';
+  var CLE = 'sb_publishable_mhLyot9Dv_VCtWpCbYpngg_evMB79C3';
+
+  // Les alertes ouvertes par un administrateur viennent de Supabase, en direct.
+  // status.json en garde une copie : si Supabase ne repond pas, on l utilise.
+  function alertesAdmin() {
+    var champs = 'id,titre,resume,gravite,etat,composant,versions_touchees,correctif,debut,fin,maj';
+    return fetch(SUPA + '/rest/v1/nx_alertes?select=' + champs + '&order=debut.desc&limit=40',
+      { headers: { apikey: CLE, Accept: 'application/json' }, cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(function (l) {
+        return l.map(function (a) {
+          return {
+            id: a.id, source: 'admin', composant: a.composant, titre: a.titre,
+            gravite: a.gravite, etat: a.etat, debut: a.debut, fin: a.fin,
+            versionsTouchees: a.versions_touchees, correctif: a.correctif,
+            resume: a.resume, maj: Array.isArray(a.maj) ? a.maj : []
+          };
+        });
+      })
+      .catch(function () { return null; });
+  }
+
   function charger() {
     var q = '?t=' + Date.now();
     Promise.all([
       fetch('status.json' + q, { cache: 'no-store' }).then(function (r) { return r.json(); }),
-      fetch('history.json' + q, { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return {}; })
+      fetch('history.json' + q, { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return {}; }),
+      alertesAdmin()
     ]).then(function (res) {
-      var s = res[0], histo = res[1];
+      var s = res[0], histo = res[1], adm = res[2];
+
+      if (adm) {
+        s.incidents = (s.incidents || []).filter(function (i) { return i.source !== 'admin'; }).concat(adm);
+        s.incidents.sort(function (a, b) { return String(b.debut).localeCompare(String(a.debut)); });
+      }
+      var vivantes = (s.incidents || []).filter(function (i) { return !i.fin && i.etat !== 'resolu'; });
+      if (vivantes.length && s.etat === 'operationnel') {
+        s.etat = vivantes.some(function (i) { return i.gravite === 'critique'; }) ? 'panne' : 'degrade';
+        s.resume = vivantes[0].titre;
+      }
       var n = (s.composants || []).length;
       banniere(s.etat, s.etat === 'operationnel'
         ? n + ' service' + (n > 1 ? 's' : '') + ' surveille' + (n > 1 ? 's' : '') + ' · verifie ' + ecoule(s.genereA)

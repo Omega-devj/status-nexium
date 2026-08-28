@@ -1,29 +1,29 @@
 {
-  "genereA": "2026-08-28T17:21:04.165Z",
-  "etat": "operationnel",
-  "resume": "Tous les services sont operationnels",
+  "genereA": "2026-08-28T17:44:28.491Z",
+  "etat": "degrade",
+  "resume": "Les messages prives mettent du temps a s ouvrir",
   "composants": [
     {
       "cle": "client",
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 81,
+      "latenceMs": 257,
       "info": "v153",
       "etat": "operationnel",
-      "_echecs": 1,
-      "verifieA": "2026-08-28T17:21:04.165Z"
+      "_echecs": 0,
+      "verifieA": "2026-08-28T17:44:28.491Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": false,
-      "latenceMs": 17,
+      "latenceMs": 171,
       "info": "438 868 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:21:04.165Z"
+      "verifieA": "2026-08-28T17:44:28.491Z"
     },
     {
       "cle": "banlist",
@@ -33,62 +33,81 @@
       "latenceMs": 17,
       "info": "1 entree(s)",
       "etat": "operationnel",
-      "_echecs": 1,
-      "verifieA": "2026-08-28T17:21:04.165Z"
+      "_echecs": 0,
+      "verifieA": "2026-08-28T17:44:28.491Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 18,
+      "latenceMs": 17,
       "info": "2 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:21:04.165Z"
+      "verifieA": "2026-08-28T17:44:28.491Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 16,
+      "latenceMs": 165,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:21:04.165Z"
+      "verifieA": "2026-08-28T17:44:28.491Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 52,
+      "latenceMs": 231,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:21:04.165Z"
+      "verifieA": "2026-08-28T17:44:28.491Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 350,
+      "latenceMs": 251,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:21:04.165Z"
+      "verifieA": "2026-08-28T17:44:28.491Z"
     },
     {
       "cle": "communaute",
       "nom": "Renseignement communautaire",
       "detail": "Les domaines signales par les autres utilisateurs",
       "critique": false,
-      "latenceMs": 272,
+      "latenceMs": 227,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T17:21:04.165Z"
+      "verifieA": "2026-08-28T17:44:28.491Z"
     }
   ],
   "incidents": [
+    {
+      "id": "3d86e5e1-ac40-4e60-af4d-5ae753ad6dd3",
+      "source": "admin",
+      "composant": "client",
+      "titre": "Les messages prives mettent du temps a s ouvrir",
+      "gravite": "majeur",
+      "etat": "enquete",
+      "debut": "2026-08-28T17:44:27.355374+00:00",
+      "fin": null,
+      "versionsTouchees": "v153",
+      "resume": "Certains utilisateurs constatent plusieurs secondes de latence a l ouverture d une conversation privee. Le reste du client fonctionne normalement.",
+      "maj": [
+        {
+          "a": "2026-08-28T17:44:28.029Z",
+          "etat": "enquete",
+          "texte": "Signalement recu, reproduction en cours."
+        }
+      ]
+    },
     {
       "id": "simulation",
       "auto": true,

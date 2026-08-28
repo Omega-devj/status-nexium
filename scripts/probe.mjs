@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 const RACINE = join(dirname(fileURLToPath(import.meta.url)), '..');
 const RAW = 'https://raw.githubusercontent.com/Omega-devj';
 const SUPA = 'https://emcoqnvxriyrchmfpunq.supabase.co/functions/v1';
+const CLE_PUBLIQUE = 'sb_publishable_mhLyot9Dv_VCtWpCbYpngg_evMB79C3';
 const DELAI = 20000;
 const JOURS = 90;
 const SEUIL_PANNE = 2; // nombre de passages en echec avant d ouvrir un incident
@@ -164,6 +165,42 @@ function incidentsManuels() {
     .filter(Boolean);
 }
 
+// Alertes ouvertes par un administrateur depuis le client. Supabase est la
+// source de verite ; on les recopie dans status.json pour que la page et le
+// client continuent de les voir meme si Supabase tombe.
+async function alertesAdmin() {
+  const champs = 'id,titre,resume,gravite,etat,composant,versions_touchees,correctif,debut,fin,maj';
+  try {
+    const c = new AbortController();
+    const to = setTimeout(() => c.abort(), DELAI);
+    const r = await fetch(`${SUPA.replace('/functions/v1', '')}/rest/v1/nx_alertes?select=${champs}&order=debut.desc&limit=40`, {
+      signal: c.signal,
+      headers: { apikey: CLE_PUBLIQUE, Accept: 'application/json' },
+      cache: 'no-store'
+    });
+    clearTimeout(to);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const lignes = await r.json();
+    return lignes.map(a => ({
+      id: a.id,
+      source: 'admin',
+      composant: a.composant || null,
+      titre: a.titre,
+      gravite: a.gravite,
+      etat: a.etat,
+      debut: a.debut,
+      fin: a.fin,
+      versionsTouchees: a.versions_touchees || undefined,
+      correctif: a.correctif || undefined,
+      resume: a.resume,
+      maj: Array.isArray(a.maj) ? a.maj : []
+    }));
+  } catch (e) {
+    console.log('alertes admin illisibles : ' + (e.message || e));
+    return null; // null = on garde celles de la passe precedente
+  }
+}
+
 function majIncidentsAuto(precedents, resultats, maintenant) {
   const auto = precedents.filter(i => i.auto);
   const sortie = [];
@@ -237,8 +274,15 @@ for (const c of COMPOSANTS) {
   console.log(`${r.etat.padEnd(13)} ${r.nom}  ${r.latenceMs} ms  ${r.pourquoi || r.info || ''}`);
 }
 
-const incidents = [...majIncidentsAuto(precedent.incidents || [], resultats, maintenant), ...incidentsManuels()]
-  .sort((a, b) => String(b.debut).localeCompare(String(a.debut)));
+const admin = await alertesAdmin();
+const gardees = admin !== null ? admin : (precedent.incidents || []).filter(i => i.source === 'admin');
+console.log('alertes administrateur : ' + gardees.length + (admin === null ? ' (reprises de la passe precedente)' : ''));
+
+const incidents = [
+  ...majIncidentsAuto(precedent.incidents || [], resultats, maintenant),
+  ...incidentsManuels(),
+  ...gardees
+].sort((a, b) => String(b.debut).localeCompare(String(a.debut)));
 
 const ouverts = incidents.filter(i => !i.fin && i.etat !== 'resolu');
 const pire = resultats.some(r => r.etat === 'panne' && r.critique) ? 'panne'
