@@ -1,0 +1,51 @@
+name: Surveillance
+
+on:
+  schedule:
+    # toutes les 5 minutes (GitHub peut retarder un peu les taches planifiees)
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'incidents/**'
+      - 'scripts/**'
+      - '.github/workflows/surveillance.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: surveillance
+  cancel-in-progress: false
+
+jobs:
+  sonder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sonder les services
+        run: node scripts/probe.mjs
+
+      - name: Publier le resultat
+        run: |
+          git config user.name  "nexium-statut"
+          git config user.email "actions@users.noreply.github.com"
+          git add status.json history.json
+          if git diff --cached --quiet; then
+            echo "aucun changement"
+            exit 0
+          fi
+          etat=$(node -e "process.stdout.write(require('./status.json').etat)")
+          git commit -m "statut : $etat"
+          for i in 1 2 3; do
+            git push && break
+            echo "push refuse, nouvelle tentative"
+            git pull --rebase --autostash origin main || exit 1
+          done

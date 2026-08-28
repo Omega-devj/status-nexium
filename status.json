@@ -1,0 +1,150 @@
+{
+  "genereA": "2026-08-28T17:21:04.165Z",
+  "etat": "operationnel",
+  "resume": "Tous les services sont operationnels",
+  "composants": [
+    {
+      "cle": "client",
+      "nom": "Mise a jour du client",
+      "detail": "Le fichier que chaque client retelecharge au demarrage",
+      "critique": true,
+      "latenceMs": 81,
+      "info": "v153",
+      "etat": "operationnel",
+      "_echecs": 1,
+      "verifieA": "2026-08-28T17:21:04.165Z"
+    },
+    {
+      "cle": "blocklist",
+      "nom": "Protection des liens",
+      "detail": "La base de domaines malveillants",
+      "critique": false,
+      "latenceMs": 17,
+      "info": "438 868 domaines",
+      "etat": "operationnel",
+      "_echecs": 0,
+      "verifieA": "2026-08-28T17:21:04.165Z"
+    },
+    {
+      "cle": "banlist",
+      "nom": "Liste de bannissement",
+      "detail": "Le verrou des comptes bannis",
+      "critique": false,
+      "latenceMs": 17,
+      "info": "1 entree(s)",
+      "etat": "operationnel",
+      "_echecs": 1,
+      "verifieA": "2026-08-28T17:21:04.165Z"
+    },
+    {
+      "cle": "changelog",
+      "nom": "Notes de version",
+      "detail": "Ce que le client affiche apres une mise a jour",
+      "critique": false,
+      "latenceMs": 18,
+      "info": "2 version(s)",
+      "etat": "operationnel",
+      "_echecs": 0,
+      "verifieA": "2026-08-28T17:21:04.165Z"
+    },
+    {
+      "cle": "musique",
+      "nom": "Bibliotheque musicale",
+      "detail": "Les pistes proposees dans Nexium Music",
+      "critique": false,
+      "latenceMs": 16,
+      "etat": "operationnel",
+      "_echecs": 0,
+      "verifieA": "2026-08-28T17:21:04.165Z"
+    },
+    {
+      "cle": "sponsor",
+      "nom": "Partenariats",
+      "detail": "Le contenu de la page Sponsor",
+      "critique": false,
+      "latenceMs": 52,
+      "etat": "operationnel",
+      "_echecs": 0,
+      "verifieA": "2026-08-28T17:21:04.165Z"
+    },
+    {
+      "cle": "signalements",
+      "nom": "Signalements",
+      "detail": "L envoi d un domaine suspect depuis le client",
+      "critique": false,
+      "latenceMs": 350,
+      "etat": "operationnel",
+      "_echecs": 0,
+      "verifieA": "2026-08-28T17:21:04.165Z"
+    },
+    {
+      "cle": "communaute",
+      "nom": "Renseignement communautaire",
+      "detail": "Les domaines signales par les autres utilisateurs",
+      "critique": false,
+      "latenceMs": 272,
+      "etat": "operationnel",
+      "_echecs": 0,
+      "verifieA": "2026-08-28T17:21:04.165Z"
+    }
+  ],
+  "incidents": [
+    {
+      "id": "simulation",
+      "auto": true,
+      "composant": "client",
+      "titre": "Mise a jour du client injoignable",
+      "gravite": "majeur",
+      "etat": "resolu",
+      "debut": "2026-08-28T17:18:52.565Z",
+      "fin": "2026-08-28T17:21:04.165Z",
+      "resume": "Detecte automatiquement : reponse HTTP 404",
+      "maj": [
+        {
+          "a": "2026-08-28T17:18:52.565Z",
+          "etat": "enquete",
+          "texte": "reponse HTTP 404"
+        },
+        {
+          "a": "2026-08-28T17:21:04.165Z",
+          "etat": "resolu",
+          "texte": "Le service repond a nouveau normalement."
+        }
+      ]
+    },
+    {
+      "id": "2026-08-28-plantage-ouverture-salon",
+      "composant": "client",
+      "titre": "Le client tombait sur l ecran de plantage a l ouverture d un salon",
+      "gravite": "critique",
+      "etat": "resolu",
+      "debut": "2026-08-28T09:00:00Z",
+      "fin": "2026-08-28T16:00:00Z",
+      "versionsTouchees": "v150 a v152",
+      "correctif": "v153",
+      "resume": "Ouvrir un serveur ou un message prive faisait tomber le client entier sur l ecran de plantage de Discord : barre de serveurs vide, liste de conversations vide. Tous les clients etaient touches en meme temps.",
+      "maj": [
+        {
+          "a": "2026-08-28T11:30:00Z",
+          "etat": "enquete",
+          "texte": "Plusieurs utilisateurs signalent que les serveurs et les messages prives ne s ouvrent plus. Les pages de reglages Nexium, elles, fonctionnent."
+        },
+        {
+          "a": "2026-08-28T14:20:00Z",
+          "etat": "identifie",
+          "texte": "Le journal d erreurs de Nexium gardait la fonction d origine de console.error dans une variable nommee _ce. Le zod embarque d Equicord declare _ce au meme niveau de portee et l ecrasait. Chaque appel a console.error appelait donc un constructeur zod et levait une exception."
+        },
+        {
+          "a": "2026-08-28T15:10:00Z",
+          "etat": "identifie",
+          "texte": "L exception tombait dans le rattrapage d erreur de React. Levee a cet endroit, elle empechait React de recuperer et detruisait l arbre entier de l interface. Le changement de build de Discord avait reattribue le nom _ce, ce qui explique que tous les clients soient tombes le meme jour."
+        },
+        {
+          "a": "2026-08-28T16:00:00Z",
+          "etat": "resolu",
+          "texte": "v153 publiee : les trois variables passent dans l espace de noms (_NXce, _NXce0, _NXpce). Verifie sur un client reel : 18 serveurs et 30 messages affiches, ecran de plantage absent. Le correctif arrive automatiquement au prochain redemarrage du client."
+        }
+      ]
+    }
+  ]
+}
