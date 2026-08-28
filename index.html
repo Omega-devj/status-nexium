@@ -9,7 +9,7 @@
   :root{
     --fond:#0b0b0c; --carte:#121214; --carte2:#17171a; --ligne:#26262b;
     --texte:#ececee; --doux:#9a9aa4; --faible:#6a6a73;
-    --or:#e6c48a; --vert:#5fb37a; --ambre:#d9a441; --rouge:#d6484a; --bleu:#6a8fd6; --gris:#3a3a41;
+    --or:#e6c48a; --vert:#5fb37a; --ambre:#d9a441; --rouge:#d6484a; --bleu:#6a8fd6; --rose:#e0426a; --gris:#3a3a41;
     --r:14px;
   }
   @media (prefers-color-scheme: light){
@@ -33,6 +33,12 @@
     border:1px solid var(--ligne);background:var(--carte);display:flex;gap:18px;align-items:center}
   .banniere .rond{width:42px;height:42px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
     font-size:19px;font-weight:700}
+  .synthese{display:flex;gap:0;margin-bottom:14px;border:1px solid var(--ligne);border-radius:var(--r);
+    background:var(--carte);overflow:hidden;flex-wrap:wrap}
+  .syn{flex:1 1 120px;padding:14px 18px;border-right:1px solid var(--ligne)}
+  .syn:last-child{border-right:none}
+  .syn b{display:block;font-size:20px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .syn span{display:block;font-size:11.5px;color:var(--faible);margin-top:2px}
   .banniere h1{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em}
   .banniere p{margin:3px 0 0;color:var(--doux);font-size:13px}
   .b-operationnel{border-color:rgba(95,179,122,.4)} .b-operationnel .rond{background:rgba(95,179,122,.16);color:var(--vert)}
@@ -50,7 +56,8 @@
   .comp-tete{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
   .comp-nom{font-weight:600}
   .comp-detail{color:var(--faible);font-size:12.5px}
-  .comp-etat{margin-left:auto;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+  .comp-dispo{margin-left:auto;font-size:12.5px;color:var(--doux);font-variant-numeric:tabular-nums}
+  .comp-etat{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;margin-left:12px}
   .e-operationnel{color:var(--vert)} .e-degrade{color:var(--ambre)} .e-panne{color:var(--rouge)} .e-inconnu{color:var(--doux)}
   .comp-info{color:var(--doux);font-size:12.5px;margin-top:3px}
 
@@ -68,10 +75,12 @@
   .inc-tete{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .puce{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
     padding:3px 9px;border-radius:99px;border:1px solid}
+  .g-securite{color:var(--rose);border-color:rgba(224,66,106,.5);background:rgba(224,66,106,.1)}
   .g-critique{color:var(--rouge);border-color:rgba(214,72,74,.5);background:rgba(214,72,74,.1)}
   .g-majeur{color:var(--ambre);border-color:rgba(217,164,65,.5);background:rgba(217,164,65,.1)}
   .g-mineur{color:var(--doux);border-color:var(--ligne)}
   .g-maintenance{color:var(--bleu);border-color:rgba(106,143,214,.5);background:rgba(106,143,214,.1)}
+  .g-info{color:var(--vert);border-color:rgba(95,179,122,.4);background:rgba(95,179,122,.08)}
   .g-resolu{color:var(--vert);border-color:rgba(95,179,122,.45);background:rgba(95,179,122,.1)}
   .inc h3{margin:0;font-size:15.5px;font-weight:650}
   .inc-date{color:var(--faible);font-size:12px;margin-left:auto}
@@ -84,6 +93,10 @@
   .maj b{color:var(--texte);font-weight:650;text-transform:uppercase;font-size:10.5px;letter-spacing:.08em}
   .maj time{color:var(--faible);font-size:11.5px;margin-left:7px}
 
+  .legende{padding:6px 20px 14px}
+  .lg{display:flex;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px solid var(--ligne)}
+  .lg:last-child{border-bottom:none}
+  .lg span:last-child{color:var(--faible);font-size:12.5px}
   .vide{padding:26px 20px;color:var(--faible);font-size:13.5px;text-align:center}
   footer{margin-top:38px;color:var(--faible);font-size:12.5px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   footer a{color:var(--doux)}
@@ -111,6 +124,7 @@
     </div>
   </div>
 
+  <div id="resume-global"></div>
   <div id="zone-ouverts"></div>
 
   <h2>Services <em id="direct"></em></h2>
@@ -118,6 +132,9 @@
 
   <h2>Historique des incidents</h2>
   <div class="carte" id="historique"><div class="vide">Chargement…</div></div>
+
+  <h2>Niveaux d alerte</h2>
+  <div class="carte"><div id="legende" class="legende"></div></div>
 
   <footer>
     <span><span class="pastille" id="pastille"></span><span id="maj">—</span></span>
@@ -142,8 +159,12 @@
   var COURT = { operationnel: 'Operationnel', degrade: 'Degrade', panne: 'Panne', inconnu: 'Inconnu' };
   var ETATINC = { enquete: 'En cours d analyse', identifie: 'Cause identifiee',
                   surveille: 'Sous surveillance', resolu: 'Resolu' };
-  var GRAV = { critique: 'Panne critique', majeur: 'Incident majeur',
-               mineur: 'Incident mineur', maintenance: 'Maintenance' };
+  var GRAV = {
+    securite: 'Alerte de securite', critique: 'Panne critique', majeur: 'Incident majeur',
+    mineur: 'Incident mineur', maintenance: 'Maintenance', info: 'Information'
+  };
+  var POIDS = { securite: 5, critique: 4, majeur: 3, mineur: 2, maintenance: 1, info: 0 };
+  function poids(g) { return POIDS[g] != null ? POIDS[g] : 0; }
 
   function e(t, c, x) { var n = document.createElement(t); if (c) n.className = c; if (x != null) n.textContent = x; return n; }
   function dt(s) { try { return new Date(s).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short' }); } catch (_) { return s; } }
@@ -219,6 +240,15 @@
     document.title = (etat === 'operationnel' ? '' : '● ') + 'Statut · Nexium Client';
   }
 
+  // Part des verifications ou le service etait operationnel, sur la fenetre
+  // dont on a des donnees. Renvoie null tant qu'il n'y a rien a mesurer.
+  function disponibilite(cle, histo) {
+    var h = (histo && histo[cle]) || {};
+    var ok = 0, tot = 0;
+    for (var d in h) { ok += h[d].ok; tot += h[d].ok + h[d].degrade + h[d].panne; }
+    return tot ? (ok / tot * 100) : null;
+  }
+
   function barres(cle, histo) {
     var h = (histo && histo[cle]) || {};
     var env = e('div'), ligne = e('div', 'barres'), vus = 0;
@@ -248,6 +278,12 @@
       var d = e('div', 'comp'), t = e('div', 'comp-tete');
       t.appendChild(e('span', 'comp-nom', c.nom));
       if (c.detail) t.appendChild(e('span', 'comp-detail', c.detail));
+      var dispo = disponibilite(c.cle, histo);
+      if (dispo !== null) {
+        var sd = e('span', 'comp-dispo', dispo.toFixed(dispo >= 99.95 ? 0 : 2) + ' % sur 90 j');
+        sd.title = 'Part des verifications ou le service a repondu normalement';
+        t.appendChild(sd);
+      }
       t.appendChild(e('span', 'comp-etat e-' + c.etat, COURT[c.etat] || c.etat));
       d.appendChild(t);
       var info = c.pourquoi || c.info;
@@ -289,7 +325,8 @@
   }
 
   function rendreIncidents(inc) {
-    var ouverts = inc.filter(function (i) { return !i.fin && i.etat !== 'resolu'; });
+    var ouverts = inc.filter(function (i) { return !i.fin && i.etat !== 'resolu'; })
+      .sort(function (a, b) { return poids(b.gravite) - poids(a.gravite); });
     var passes = inc.filter(function (i) { return i.fin || i.etat === 'resolu'; });
 
     var zo = document.getElementById('zone-ouverts');
@@ -335,8 +372,10 @@
         var pire = comps.some(function (c) { return c.etat === 'panne' && c.critique; }) ? 'panne'
           : comps.some(function (c) { return c.etat !== 'operationnel'; }) ? 'degrade' : 'operationnel';
         if (ouverts.length) {
-          var crit = ouverts.some(function (i) { return i.gravite === 'critique'; });
-          if (crit) pire = 'panne'; else if (pire === 'operationnel') pire = 'degrade';
+          var max = Math.max.apply(null, ouverts.map(function (i) { return poids(i.gravite); }));
+          if (max >= 4) pire = 'panne';
+          else if (max >= 2 && pire === 'operationnel') pire = 'degrade';
+          else if (max === 1 && pire === 'operationnel') pire = 'degrade';
         }
 
         var n = comps.length;
@@ -345,6 +384,25 @@
           ouverts.length ? (ouverts[0].resume || '').slice(0, 160)
             : comps.filter(function (c) { return c.etat !== 'operationnel'; })
                    .map(function (c) { return c.nom; }).join(', '));
+
+        var moyennes = comps.map(function (c) { return disponibilite(c.cle, histo); })
+          .filter(function (x) { return x !== null; });
+        var moy = moyennes.length ? moyennes.reduce(function (a, b) { return a + b; }, 0) / moyennes.length : null;
+        var lat = comps.filter(function (c) { return c.latenceMs != null; })
+          .map(function (c) { return c.latenceMs; });
+        var med = lat.length ? lat.slice().sort(function (a, b) { return a - b; })[Math.floor(lat.length / 2)] : null;
+        var clos = inc.filter(function (i) { return i.fin || i.etat === 'resolu'; }).length;
+
+        var zr = document.getElementById('resume-global');
+        zr.innerHTML = '';
+        var syn = e('div', 'synthese');
+        function bloc(v, l) { var d = e('div', 'syn'); d.appendChild(e('b', null, v)); d.appendChild(e('span', null, l)); return d; }
+        syn.appendChild(bloc(comps.filter(function (c) { return c.etat === 'operationnel'; }).length + ' / ' + comps.length, 'services operationnels'));
+        if (moy !== null) syn.appendChild(bloc(moy.toFixed(moy >= 99.95 ? 0 : 2) + ' %', 'disponibilite moyenne, 90 j'));
+        if (med !== null) syn.appendChild(bloc(med + ' ms', 'latence mediane'));
+        syn.appendChild(bloc(String(ouverts.length), ouverts.length > 1 ? 'incidents en cours' : 'incident en cours'));
+        syn.appendChild(bloc(String(clos), 'incidents resolus'));
+        zr.appendChild(syn);
 
         document.getElementById('direct').textContent = 'verifies en direct';
         document.getElementById('maj').textContent = 'Verifie ' + ecoule(new Date().toISOString());
@@ -361,6 +419,24 @@
       document.getElementById('composants').innerHTML = '<div class="vide">Etat indisponible.</div>';
     });
   }
+
+  (function legende() {
+    var d = [
+      ['securite', 'Une faille ou une menace qui vise directement les utilisateurs.'],
+      ['critique', 'Le client est inutilisable pour tout le monde.'],
+      ['majeur', 'Une fonction importante ne marche plus.'],
+      ['mineur', 'Une gene, sans blocage.'],
+      ['maintenance', 'Une interruption prevue et annoncee.'],
+      ['info', 'Une annonce, sans incident.']
+    ];
+    var z = document.getElementById('legende');
+    d.forEach(function (x) {
+      var l = e('div', 'lg');
+      l.appendChild(e('span', 'puce g-' + x[0], GRAV[x[0]]));
+      l.appendChild(e('span', null, x[1]));
+      z.appendChild(l);
+    });
+  })();
 
   charger();
   setInterval(charger, 45000);
