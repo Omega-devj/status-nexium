@@ -1,49 +1,49 @@
 {
   "client": {
     "2026-08-28": {
-      "ok": 8,
+      "ok": 7,
       "degrade": 0,
       "panne": 0
     }
   },
   "blocklist": {
     "2026-08-28": {
-      "ok": 8,
+      "ok": 7,
       "degrade": 0,
       "panne": 0
     }
   },
   "banlist": {
     "2026-08-28": {
-      "ok": 8,
+      "ok": 7,
       "degrade": 0,
       "panne": 0
     }
   },
   "changelog": {
     "2026-08-28": {
-      "ok": 8,
+      "ok": 7,
       "degrade": 0,
       "panne": 0
     }
   },
   "musique": {
     "2026-08-28": {
-      "ok": 8,
+      "ok": 7,
       "degrade": 0,
       "panne": 0
     }
   },
   "sponsor": {
     "2026-08-28": {
-      "ok": 8,
+      "ok": 7,
       "degrade": 0,
       "panne": 0
     }
   },
   "signalements": {
     "2026-08-28": {
-      "ok": 8,
+      "ok": 7,
       "degrade": 0,
       "panne": 0
     }
@@ -57,7 +57,7 @@
   },
   "alertes": {
     "2026-08-28": {
-      "ok": 3,
+      "ok": 2,
       "degrade": 0,
       "panne": 0
     }
