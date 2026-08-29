@@ -1,5 +1,5 @@
 {
-  "genereA": "2026-08-29T17:25:36.338Z",
+  "genereA": "2026-08-29T19:50:01.348Z",
   "etat": "operationnel",
   "resume": "Tous les services sont operationnels",
   "composants": [
@@ -8,84 +8,84 @@
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 484,
+      "latenceMs": 714,
       "info": "v172",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T17:25:36.338Z"
+      "verifieA": "2026-08-29T19:50:01.348Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 1131,
+      "latenceMs": 1078,
       "info": "438 868 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T17:25:36.338Z"
+      "verifieA": "2026-08-29T19:50:01.348Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 134,
+      "latenceMs": 161,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T17:25:36.338Z"
+      "verifieA": "2026-08-29T19:50:01.348Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 93,
+      "latenceMs": 154,
       "info": "2 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T17:25:36.338Z"
+      "verifieA": "2026-08-29T19:50:01.348Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 129,
+      "latenceMs": 204,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T17:25:36.338Z"
+      "verifieA": "2026-08-29T19:50:01.348Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 211,
+      "latenceMs": 220,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T17:25:36.338Z"
+      "verifieA": "2026-08-29T19:50:01.348Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 822,
+      "latenceMs": 730,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T17:25:36.338Z"
+      "verifieA": "2026-08-29T19:50:01.348Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 227,
+      "latenceMs": 263,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T17:25:36.338Z"
+      "verifieA": "2026-08-29T19:50:01.348Z"
     }
   ],
   "incidents": [
@@ -97,7 +97,7 @@
       "gravite": "majeur",
       "etat": "resolu",
       "debut": "2026-08-28T23:51:35.123008+00:00",
-      "fin": "2026-08-28T23:53:35.447+00:00",
+      "fin": "2026-08-29T17:59:29.880281+00:00",
       "versionsTouchees": "v168",
       "resume": "Un incident et en cours : les liens de nexium protect mettront plus de temps a se faire scanner. (suivez les mises a jours sur le site web)",
       "maj": [
