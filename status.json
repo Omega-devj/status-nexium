@@ -1,5 +1,5 @@
 {
-  "genereA": "2026-08-28T18:19:14.834Z",
+  "genereA": "2026-08-29T01:48:06.645Z",
   "etat": "operationnel",
   "resume": "Tous les services sont operationnels",
   "composants": [
@@ -8,87 +8,121 @@
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 452,
-      "info": "v155",
+      "latenceMs": 533,
+      "info": "v171",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T18:19:14.834Z"
+      "verifieA": "2026-08-29T01:48:06.645Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 662,
+      "latenceMs": 985,
       "info": "438 868 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T18:19:14.834Z"
+      "verifieA": "2026-08-29T01:48:06.645Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 80,
+      "latenceMs": 141,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T18:19:14.834Z"
+      "verifieA": "2026-08-29T01:48:06.645Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 65,
+      "latenceMs": 160,
       "info": "2 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T18:19:14.834Z"
+      "verifieA": "2026-08-29T01:48:06.645Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 64,
+      "latenceMs": 161,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T18:19:14.834Z"
+      "verifieA": "2026-08-29T01:48:06.645Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 88,
+      "latenceMs": 171,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T18:19:14.834Z"
+      "verifieA": "2026-08-29T01:48:06.645Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 587,
+      "latenceMs": 787,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T18:19:14.834Z"
+      "verifieA": "2026-08-29T01:48:06.645Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 279,
+      "latenceMs": 873,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-28T18:19:14.834Z"
+      "verifieA": "2026-08-29T01:48:06.645Z"
     }
   ],
   "incidents": [
+    {
+      "id": "47ca496f-ee7f-4c41-a7fe-9c5bdda2fa3e",
+      "source": "admin",
+      "composant": "client",
+      "titre": "Latences sur le scan des liens",
+      "gravite": "majeur",
+      "etat": "resolu",
+      "debut": "2026-08-28T23:51:35.123008+00:00",
+      "fin": "2026-08-28T23:53:35.447+00:00",
+      "versionsTouchees": "v168",
+      "resume": "Un incident et en cours : les liens de nexium protect mettront plus de temps a se faire scanner. (suivez les mises a jours sur le site web)",
+      "maj": [
+        {
+          "a": "2026-08-28T23:51:35.688Z",
+          "etat": "enquete",
+          "texte": "Un incident et en cours : les liens de nexium protect mettront plus de temps a se faire scanner. (suivez les mises a jours sur le site web)"
+        },
+        {
+          "a": "2026-08-28T23:52:14.655Z",
+          "etat": "identifie",
+          "texte": "La cause est identifiee, un correctif est en preparation."
+        },
+        {
+          "a": "2026-08-28T23:52:41.697Z",
+          "etat": "surveille",
+          "texte": "Un correctif est en place, la situation est sous surveillance."
+        },
+        {
+          "a": "2026-08-28T23:53:35.447Z",
+          "etat": "resolu",
+          "texte": "Incident resolu."
+        }
+      ]
+    },
     {
       "id": "simulation",
       "auto": true,
