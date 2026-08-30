@@ -1,5 +1,5 @@
 {
-  "genereA": "2026-08-29T22:03:48.343Z",
+  "genereA": "2026-08-30T00:16:41.193Z",
   "etat": "operationnel",
   "resume": "Tous les services sont operationnels",
   "composants": [
@@ -8,87 +8,144 @@
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 600,
-      "info": "v172",
+      "latenceMs": 571,
+      "info": "v173",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T22:03:48.343Z"
+      "verifieA": "2026-08-30T00:16:41.193Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 1052,
+      "latenceMs": 672,
       "info": "438 868 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T22:03:48.343Z"
+      "verifieA": "2026-08-30T00:16:41.193Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 143,
+      "latenceMs": 120,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T22:03:48.343Z"
+      "verifieA": "2026-08-30T00:16:41.193Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 175,
+      "latenceMs": 98,
       "info": "2 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T22:03:48.343Z"
+      "verifieA": "2026-08-30T00:16:41.193Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 156,
+      "latenceMs": 101,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T22:03:48.343Z"
+      "verifieA": "2026-08-30T00:16:41.193Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 163,
+      "latenceMs": 109,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T22:03:48.343Z"
+      "verifieA": "2026-08-30T00:16:41.193Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 742,
+      "latenceMs": 557,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T22:03:48.343Z"
+      "verifieA": "2026-08-30T00:16:41.193Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 219,
+      "latenceMs": 261,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-29T22:03:48.343Z"
+      "verifieA": "2026-08-30T00:16:41.193Z"
     }
   ],
   "incidents": [
+    {
+      "id": "437358ce-22f2-4bcb-846f-488569cea786",
+      "source": "admin",
+      "composant": "client",
+      "titre": "Faille de sécurité resolue",
+      "gravite": "info",
+      "etat": "resolu",
+      "debut": "2026-08-29T22:39:28.077701+00:00",
+      "fin": "2026-08-29T22:39:55.781+00:00",
+      "resume": "La faille de sécurité sur la DB a été corrigée, les services refonctionnent désormais correctement.",
+      "maj": [
+        {
+          "a": "2026-08-29T22:39:27.355Z",
+          "etat": "enquete",
+          "texte": "La faille de sécurité sur la DB a été corrigée, les services refonctionnent désormais correctement."
+        },
+        {
+          "a": "2026-08-29T22:39:55.781Z",
+          "etat": "resolu",
+          "texte": "Incident resolu."
+        }
+      ]
+    },
+    {
+      "id": "91783b1b-0dfa-45c1-878a-0ab2dfa50e51",
+      "source": "admin",
+      "composant": "client",
+      "titre": "Faille de sécurité sur la base de donnée",
+      "gravite": "securite",
+      "etat": "resolu",
+      "debut": "2026-08-29T22:36:23.537094+00:00",
+      "fin": "2026-08-29T22:38:26.281+00:00",
+      "versionsTouchees": "toutes les versions sont touchés",
+      "resume": "Une faille de sécurité a été trouvée sur la base de données. Aucune infraction n’a été recensée. Nous avons mis en pause les requêtes vers cette dernière pour éviter toute complication.\nCertains services du client ne fonctionneront donc pas temporairement.",
+      "maj": [
+        {
+          "a": "2026-08-29T22:36:22.830Z",
+          "etat": "enquete",
+          "texte": "Une faille de sécurité a été trouvée sur la base de données. Aucune infraction n’a été recensée. Nous avons mis en pause les requêtes vers cette dernière pour éviter toute complication.\nCertains services du client ne fonctionneront donc pas temporairement."
+        },
+        {
+          "a": "2026-08-29T22:37:22.594Z",
+          "etat": "identifie",
+          "texte": "La cause est identifiee, un correctif est en preparation."
+        },
+        {
+          "a": "2026-08-29T22:38:05.359Z",
+          "etat": "surveille",
+          "texte": "Un correctif est en place, la situation est sous surveillance."
+        },
+        {
+          "a": "2026-08-29T22:38:26.281Z",
+          "etat": "resolu",
+          "texte": "Incident resolu."
+        }
+      ]
+    },
     {
       "id": "47ca496f-ee7f-4c41-a7fe-9c5bdda2fa3e",
       "source": "admin",
