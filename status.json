@@ -1,5 +1,5 @@
 {
-  "genereA": "2026-08-30T21:16:14.388Z",
+  "genereA": "2026-08-30T23:37:45.589Z",
   "etat": "operationnel",
   "resume": "Tous les services sont operationnels",
   "composants": [
@@ -8,87 +8,116 @@
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 429,
+      "latenceMs": 596,
       "info": "v174",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-30T21:16:14.388Z"
+      "verifieA": "2026-08-30T23:37:45.589Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 747,
+      "latenceMs": 1215,
       "info": "438 868 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-30T21:16:14.388Z"
+      "verifieA": "2026-08-30T23:37:45.589Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 102,
+      "latenceMs": 166,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-30T21:16:14.388Z"
+      "verifieA": "2026-08-30T23:37:45.589Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 94,
+      "latenceMs": 157,
       "info": "2 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-30T21:16:14.388Z"
+      "verifieA": "2026-08-30T23:37:45.589Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 96,
+      "latenceMs": 163,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-30T21:16:14.388Z"
+      "verifieA": "2026-08-30T23:37:45.589Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 109,
+      "latenceMs": 212,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-30T21:16:14.388Z"
+      "verifieA": "2026-08-30T23:37:45.589Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 275,
+      "latenceMs": 344,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-30T21:16:14.388Z"
+      "verifieA": "2026-08-30T23:37:45.589Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 261,
+      "latenceMs": 183,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-08-30T21:16:14.388Z"
+      "verifieA": "2026-08-30T23:37:45.589Z"
     }
   ],
   "incidents": [
+    {
+      "id": "f5597f34-d07f-44dc-b142-02eb1dd33490",
+      "source": "admin",
+      "composant": "client",
+      "titre": "Problème Link AutoTest",
+      "gravite": "majeur",
+      "etat": "resolu",
+      "debut": "2026-08-30T21:22:04.007593+00:00",
+      "fin": "2026-08-30T21:24:05.615+00:00",
+      "versionsTouchees": "toutes les versions",
+      "resume": "des ralentissement sont a prévoir pour le scan des liens, nous travaillons dessus actuellement",
+      "maj": [
+        {
+          "a": "2026-08-30T21:22:04.229Z",
+          "etat": "enquete",
+          "texte": "des ralentissement sont a prévoir pour le scan des liens, nous travaillons dessus actuellement"
+        },
+        {
+          "a": "2026-08-30T21:22:43.629Z",
+          "etat": "identifie",
+          "texte": "La cause est identifiee, un correctif est en preparation."
+        },
+        {
+          "a": "2026-08-30T21:24:05.615Z",
+          "etat": "resolu",
+          "texte": "Incident resolu."
+        }
+      ]
+    },
     {
       "id": "437358ce-22f2-4bcb-846f-488569cea786",
       "source": "admin",
