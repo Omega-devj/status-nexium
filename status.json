@@ -1,5 +1,5 @@
 {
-  "genereA": "2026-09-09T09:09:41.089Z",
+  "genereA": "2026-09-09T13:40:36.845Z",
   "etat": "operationnel",
   "resume": "Tous les services sont operationnels",
   "composants": [
@@ -8,87 +8,116 @@
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 744,
+      "latenceMs": 887,
       "info": "v184",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-09T09:09:41.089Z"
+      "verifieA": "2026-09-09T13:40:36.845Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 1039,
+      "latenceMs": 1098,
       "info": "438 868 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-09T09:09:41.089Z"
+      "verifieA": "2026-09-09T13:40:36.845Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 139,
+      "latenceMs": 131,
       "info": "2 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-09T09:09:41.089Z"
+      "verifieA": "2026-09-09T13:40:36.845Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 170,
+      "latenceMs": 233,
       "info": "34 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-09T09:09:41.089Z"
+      "verifieA": "2026-09-09T13:40:36.845Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 134,
+      "latenceMs": 152,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-09T09:09:41.089Z"
+      "verifieA": "2026-09-09T13:40:36.845Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 216,
+      "latenceMs": 297,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-09T09:09:41.089Z"
+      "verifieA": "2026-09-09T13:40:36.845Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 1205,
+      "latenceMs": 664,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-09T09:09:41.089Z"
+      "verifieA": "2026-09-09T13:40:36.845Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 345,
+      "latenceMs": 443,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-09T09:09:41.089Z"
+      "verifieA": "2026-09-09T13:40:36.845Z"
     }
   ],
   "incidents": [
+    {
+      "id": "50105082-3cf6-4cd9-b298-e911f072c056",
+      "source": "admin",
+      "composant": "Discord",
+      "titre": "Instabilité du service de traitement des messages discord",
+      "gravite": "mineur",
+      "etat": "resolu",
+      "debut": "2026-09-09T12:38:11.467415+00:00",
+      "fin": "2026-09-09T12:39:41.397+00:00",
+      "versionsTouchees": "Toutes les versions",
+      "resume": "Nous rencontrons actuellement des dysfonctionnements sur les serveur Discord du client, ce qui provoque des lenteurs et des déconnexions aléatoires. Les utilisateurs peuvent constater des messages qui n'apparaissent pas ou des canaux qui ne se chargent pas correctement. Aucun impact sur les autres services n'est observé. En attendant, nous vous recommandons de rafraîchir l'application, de vous reconnecter et de signaler tout problème persistant au support.",
+      "maj": [
+        {
+          "a": "2026-09-09T12:38:12.224Z",
+          "etat": "enquete",
+          "texte": "Nous rencontrons actuellement des dysfonctionnements sur les serveur Discord du client, ce qui provoque des lenteurs et des déconnexions aléatoires. Les utilisateurs peuvent constater des messages qui n'apparaissent pas ou des canaux qui ne se chargent pas correctement. Aucun impact sur les autres services n'est observé. En attendant, nous vous recommandons de rafraîchir l'application, de vous rec"
+        },
+        {
+          "a": "2026-09-09T12:39:35.406Z",
+          "etat": "identifie",
+          "texte": "La cause est identifiee, un correctif est en preparation."
+        },
+        {
+          "a": "2026-09-09T12:39:41.397Z",
+          "etat": "resolu",
+          "texte": "Incident resolu."
+        }
+      ]
+    },
     {
       "id": "f5597f34-d07f-44dc-b142-02eb1dd33490",
       "source": "admin",
