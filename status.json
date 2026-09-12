@@ -1,5 +1,5 @@
 {
-  "genereA": "2026-09-12T21:39:52.364Z",
+  "genereA": "2026-09-12T23:19:04.733Z",
   "etat": "operationnel",
   "resume": "Tous les services sont operationnels",
   "composants": [
@@ -8,87 +8,116 @@
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 1047,
+      "latenceMs": 442,
       "info": "v192",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-12T21:39:52.364Z"
+      "verifieA": "2026-09-12T23:19:04.733Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 1585,
+      "latenceMs": 821,
       "info": "438 868 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-12T21:39:52.364Z"
+      "verifieA": "2026-09-12T23:19:04.733Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 138,
+      "latenceMs": 50,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-12T21:39:52.364Z"
+      "verifieA": "2026-09-12T23:19:04.733Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 334,
+      "latenceMs": 56,
       "info": "38 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-12T21:39:52.364Z"
+      "verifieA": "2026-09-12T23:19:04.733Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 192,
+      "latenceMs": 81,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-12T21:39:52.364Z"
+      "verifieA": "2026-09-12T23:19:04.733Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 381,
+      "latenceMs": 114,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-12T21:39:52.364Z"
+      "verifieA": "2026-09-12T23:19:04.733Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 610,
+      "latenceMs": 402,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-12T21:39:52.364Z"
+      "verifieA": "2026-09-12T23:19:04.733Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 242,
+      "latenceMs": 268,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-12T21:39:52.364Z"
+      "verifieA": "2026-09-12T23:19:04.733Z"
     }
   ],
   "incidents": [
+    {
+      "id": "5ec4952f-a944-40b7-a875-9e45c43c495c",
+      "source": "admin",
+      "composant": "Nexium IA",
+      "titre": "Instabilité du service Nexium IA sur Discord",
+      "gravite": "majeur",
+      "etat": "resolu",
+      "debut": "2026-09-12T23:15:25.876768+00:00",
+      "fin": "2026-09-12T23:16:42.958+00:00",
+      "versionsTouchees": "toutes les versions",
+      "resume": "Nous rencontrons actuellement des problèmes d'instabilité avec le service Nexium IA. Les utilisateurs peuvent subir des réponses lentes ou des interruptions temporaires. Aucun compte n'est affecté de façon permanente. En attendant, nous vous recommandons de rafraîchir la page ou de réessayer plus tard.",
+      "maj": [
+        {
+          "a": "2026-09-12T23:15:25.512Z",
+          "etat": "enquete",
+          "texte": "Nous rencontrons actuellement des problèmes d'instabilité avec le service Nexium IA. Les utilisateurs peuvent subir des réponses lentes ou des interruptions temporaires. Aucun compte n'est affecté de façon permanente. En attendant, nous vous recommandons de rafraîchir la page ou de réessayer plus tard."
+        },
+        {
+          "a": "2026-09-12T23:16:16.784Z",
+          "etat": "identifie",
+          "texte": "La cause est identifiee, un correctif est en preparation."
+        },
+        {
+          "a": "2026-09-12T23:16:42.958Z",
+          "etat": "resolu",
+          "texte": "Incident resolu."
+        }
+      ]
+    },
     {
       "id": "50105082-3cf6-4cd9-b298-e911f072c056",
       "source": "admin",
