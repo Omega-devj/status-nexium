@@ -1,81 +1,81 @@
 {
-  "genereA": "2026-09-14T16:32:26.227Z",
-  "etat": "operationnel",
-  "resume": "Tous les services sont operationnels",
+  "genereA": "2026-09-14T20:31:48.279Z",
+  "etat": "degrade",
+  "resume": "Crash du client Discord lors de l'ouverture des profils et des messages privés",
   "composants": [
     {
       "cle": "client",
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 753,
+      "latenceMs": 685,
       "info": "v198",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-14T16:32:26.227Z"
+      "verifieA": "2026-09-14T20:31:48.279Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 938,
+      "latenceMs": 922,
       "info": "439 088 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-14T16:32:26.227Z"
+      "verifieA": "2026-09-14T20:31:48.279Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 163,
+      "latenceMs": 152,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-14T16:32:26.227Z"
+      "verifieA": "2026-09-14T20:31:48.279Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 185,
+      "latenceMs": 167,
       "info": "38 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-14T16:32:26.227Z"
+      "verifieA": "2026-09-14T20:31:48.279Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 158,
+      "latenceMs": 142,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-14T16:32:26.227Z"
+      "verifieA": "2026-09-14T20:31:48.279Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 173,
+      "latenceMs": 155,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-14T16:32:26.227Z"
+      "verifieA": "2026-09-14T20:31:48.279Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 599,
+      "latenceMs": 760,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-14T16:32:26.227Z"
+      "verifieA": "2026-09-14T20:31:48.279Z"
     },
     {
       "cle": "signalements",
@@ -85,10 +85,29 @@
       "latenceMs": 261,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-14T16:32:26.227Z"
+      "verifieA": "2026-09-14T20:31:48.279Z"
     }
   ],
   "incidents": [
+    {
+      "id": "8445b2d0-f898-4068-b32d-cd3383f98e98",
+      "source": "admin",
+      "composant": "interface",
+      "titre": "Crash du client Discord lors de l'ouverture des profils et des messages privés",
+      "gravite": "critique",
+      "etat": "enquete",
+      "debut": "2026-09-14T18:49:05.28921+00:00",
+      "fin": null,
+      "versionsTouchees": "toutes les versions",
+      "resume": "Le client Discord se bloque dès que l'utilisateur tente d'ouvrir son profil ou un message privé, rendant l'application inutilisable. Le problème affecte tous les utilisateurs du service. En attendant une résolution, il est recommandé de fermer le client et de le relancer, ou d'utiliser la version web de Discord. Aucun autre contournement n'est disponible pour le moment.",
+      "maj": [
+        {
+          "a": "2026-09-14T18:49:05.068Z",
+          "etat": "enquete",
+          "texte": "Le client Discord se bloque dès que l'utilisateur tente d'ouvrir son profil ou un message privé, rendant l'application inutilisable. Le problème affecte tous les utilisateurs du service. En attendant une résolution, il est recommandé de fermer le client et de le relancer, ou d'utiliser la version web de Discord. Aucun autre contournement n'est disponible pour le moment."
+        }
+      ]
+    },
     {
       "id": "5ec4952f-a944-40b7-a875-9e45c43c495c",
       "source": "admin",
