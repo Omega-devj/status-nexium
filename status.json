@@ -1,94 +1,118 @@
 {
-  "genereA": "2026-09-23T14:58:24.198Z",
-  "etat": "operationnel",
-  "resume": "Tous les services sont operationnels",
+  "genereA": "2026-09-23T18:48:03.287Z",
+  "etat": "degrade",
+  "resume": "Retard des messages sur Discord",
   "composants": [
     {
       "cle": "client",
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 555,
+      "latenceMs": 575,
       "info": "v201",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-23T14:58:24.198Z"
+      "verifieA": "2026-09-23T18:48:03.287Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 812,
+      "latenceMs": 710,
       "info": "439 094 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-23T14:58:24.198Z"
+      "verifieA": "2026-09-23T18:48:03.287Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 83,
+      "latenceMs": 119,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-23T14:58:24.198Z"
+      "verifieA": "2026-09-23T18:48:03.287Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 94,
+      "latenceMs": 115,
       "info": "38 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-23T14:58:24.198Z"
+      "verifieA": "2026-09-23T18:48:03.287Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 86,
+      "latenceMs": 115,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-23T14:58:24.198Z"
+      "verifieA": "2026-09-23T18:48:03.287Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 112,
+      "latenceMs": 114,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-23T14:58:24.198Z"
+      "verifieA": "2026-09-23T18:48:03.287Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 953,
+      "latenceMs": 753,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-23T14:58:24.198Z"
+      "verifieA": "2026-09-23T18:48:03.287Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 384,
+      "latenceMs": 271,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-23T14:58:24.198Z"
+      "verifieA": "2026-09-23T18:48:03.287Z"
     }
   ],
   "incidents": [
+    {
+      "id": "e1df94c0-986d-4797-a249-92bce93d6b8f",
+      "source": "admin",
+      "composant": "messagerie",
+      "titre": "Retard des messages sur Discord",
+      "gravite": "majeur",
+      "etat": "identifie",
+      "debut": "2026-09-23T18:14:45.759366+00:00",
+      "fin": null,
+      "versionsTouchees": "toute les versions",
+      "resume": "Une panne sur les serveurs Discord cause un léger retard dans la livraison des messages. Tous les utilisateurs du serveur sont concernés. En attendant, vous pouvez continuer à écrire vos messages qui seront envoyés dès que le service sera rétabli. Le service de messagerie Nexium a pris le relais pour assurer la continuité.",
+      "maj": [
+        {
+          "a": "2026-09-23T18:14:45.298Z",
+          "etat": "enquete",
+          "texte": "Une panne sur les serveurs Discord cause un léger retard dans la livraison des messages. Tous les utilisateurs du serveur sont concernés. En attendant, vous pouvez continuer à écrire vos messages qui seront envoyés dès que le service sera rétabli. Le service de messagerie Nexium a pris le relais pour assurer la continuité."
+        },
+        {
+          "a": "2026-09-23T18:16:14.757Z",
+          "etat": "identifie",
+          "texte": "La cause est identifiee, un correctif est en preparation."
+        }
+      ]
+    },
     {
       "id": "8445b2d0-f898-4068-b32d-cd3383f98e98",
       "source": "admin",
