@@ -1,5 +1,5 @@
 {
-  "genereA": "2026-09-24T14:24:48.199Z",
+  "genereA": "2026-09-24T18:29:02.643Z",
   "etat": "operationnel",
   "resume": "Tous les services sont operationnels",
   "composants": [
@@ -8,87 +8,110 @@
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 560,
-      "info": "v201",
+      "latenceMs": 689,
+      "info": "v202",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-24T14:24:48.199Z"
+      "verifieA": "2026-09-24T18:29:02.643Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 824,
+      "latenceMs": 1079,
       "info": "439 103 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-24T14:24:48.199Z"
+      "verifieA": "2026-09-24T18:29:02.643Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 106,
+      "latenceMs": 180,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-24T14:24:48.199Z"
+      "verifieA": "2026-09-24T18:29:02.643Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 110,
+      "latenceMs": 162,
       "info": "38 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-24T14:24:48.199Z"
+      "verifieA": "2026-09-24T18:29:02.643Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 163,
+      "latenceMs": 147,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-24T14:24:48.199Z"
+      "verifieA": "2026-09-24T18:29:02.643Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 162,
+      "latenceMs": 248,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-24T14:24:48.199Z"
+      "verifieA": "2026-09-24T18:29:02.643Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 846,
+      "latenceMs": 429,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-24T14:24:48.199Z"
+      "verifieA": "2026-09-24T18:29:02.643Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 277,
+      "latenceMs": 326,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-09-24T14:24:48.199Z"
+      "verifieA": "2026-09-24T18:29:02.643Z"
     }
   ],
   "incidents": [
+    {
+      "id": "c67d41f7-4081-4454-beb9-0b377f876ad2",
+      "source": "admin",
+      "composant": "messagerie",
+      "titre": "Retard léger dans la livraison des messages Discord",
+      "gravite": "mineur",
+      "etat": "resolu",
+      "debut": "2026-09-24T17:41:12.831614+00:00",
+      "fin": "2026-09-24T17:41:43.962+00:00",
+      "resume": "Nous constatons un léger retard dans la réception des messages sur Discord. Cela affecte tous les utilisateurs du serveur. Aucun message n'est perdu, mais l'affichage peut prendre quelques secondes de plus que d'habitude. En attendant, vous pouvez rafraîchir l'application ou attendre que le service se stabilise.",
+      "maj": [
+        {
+          "a": "2026-09-24T17:41:14.223Z",
+          "etat": "enquete",
+          "texte": "Nous constatons un léger retard dans la réception des messages sur Discord. Cela affecte tous les utilisateurs du serveur. Aucun message n'est perdu, mais l'affichage peut prendre quelques secondes de plus que d'habitude. En attendant, vous pouvez rafraîchir l'application ou attendre que le service se stabilise."
+        },
+        {
+          "a": "2026-09-24T17:41:43.962Z",
+          "etat": "resolu",
+          "texte": "Incident resolu."
+        }
+      ]
+    },
     {
       "id": "e1df94c0-986d-4797-a249-92bce93d6b8f",
       "source": "admin",
