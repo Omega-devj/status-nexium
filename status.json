@@ -1,5 +1,5 @@
 {
-  "genereA": "2026-10-08T08:06:25.018Z",
+  "genereA": "2026-10-08T15:32:33.294Z",
   "etat": "operationnel",
   "resume": "Tous les services sont operationnels",
   "composants": [
@@ -8,84 +8,84 @@
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 851,
+      "latenceMs": 580,
       "info": "v204",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-08T08:06:25.018Z"
+      "verifieA": "2026-10-08T15:32:33.294Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 1022,
+      "latenceMs": 692,
       "info": "439 295 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-08T08:06:25.018Z"
+      "verifieA": "2026-10-08T15:32:33.294Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 472,
+      "latenceMs": 99,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-08T08:06:25.018Z"
+      "verifieA": "2026-10-08T15:32:33.294Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 457,
+      "latenceMs": 246,
       "info": "38 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-08T08:06:25.018Z"
+      "verifieA": "2026-10-08T15:32:33.294Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 139,
+      "latenceMs": 125,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-08T08:06:25.018Z"
+      "verifieA": "2026-10-08T15:32:33.294Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 176,
+      "latenceMs": 107,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-08T08:06:25.018Z"
+      "verifieA": "2026-10-08T15:32:33.294Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 815,
+      "latenceMs": 587,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-08T08:06:25.018Z"
+      "verifieA": "2026-10-08T15:32:33.294Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 363,
+      "latenceMs": 276,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-08T08:06:25.018Z"
+      "verifieA": "2026-10-08T15:32:33.294Z"
     }
   ],
   "incidents": [
