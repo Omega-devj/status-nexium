@@ -1,5 +1,5 @@
 {
-  "genereA": "2026-10-12T16:59:13.011Z",
+  "genereA": "2026-10-12T23:29:34.369Z",
   "etat": "operationnel",
   "resume": "Tous les services sont operationnels",
   "composants": [
@@ -8,87 +8,121 @@
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 1130,
+      "latenceMs": 711,
       "info": "v204",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-12T16:59:13.011Z"
+      "verifieA": "2026-10-12T23:29:34.369Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 979,
+      "latenceMs": 1066,
       "info": "439 295 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-12T16:59:13.011Z"
+      "verifieA": "2026-10-12T23:29:34.369Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 134,
+      "latenceMs": 79,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-12T16:59:13.011Z"
+      "verifieA": "2026-10-12T23:29:34.369Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 312,
+      "latenceMs": 107,
       "info": "38 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-12T16:59:13.011Z"
+      "verifieA": "2026-10-12T23:29:34.369Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 123,
+      "latenceMs": 122,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-12T16:59:13.011Z"
+      "verifieA": "2026-10-12T23:29:34.369Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 162,
+      "latenceMs": 123,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-12T16:59:13.011Z"
+      "verifieA": "2026-10-12T23:29:34.369Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 1209,
+      "latenceMs": 784,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-12T16:59:13.011Z"
+      "verifieA": "2026-10-12T23:29:34.369Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 301,
+      "latenceMs": 256,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-10-12T16:59:13.011Z"
+      "verifieA": "2026-10-12T23:29:34.369Z"
     }
   ],
   "incidents": [
+    {
+      "id": "e616f03b-7768-4736-ba8c-a8b32827fa47",
+      "source": "admin",
+      "composant": "Signalements,Protection des liens",
+      "titre": "Problème de base de données des menaces",
+      "gravite": "securite",
+      "etat": "resolu",
+      "debut": "2026-10-12T22:32:55.101825+00:00",
+      "fin": "2026-10-12T22:37:15.266+00:00",
+      "versionsTouchees": "toute version",
+      "resume": "Nous rencontrons actuellement un dysfonctionnement de la base de données qui stocke les informations de menaces. Ce problème peut affecter la sécurité des utilisateurs en limitant la détection et le signalement des comportements suspects. Les services liés aux alertes de sécurité sont donc partiellement indisponibles. En attendant, évitez de partager des informations sensibles et surveillez les communications inhabituelles.",
+      "maj": [
+        {
+          "a": "2026-10-12T22:32:54.751Z",
+          "etat": "enquete",
+          "texte": "Nous rencontrons actuellement un dysfonctionnement de la base de données qui stocke les informations de menaces. Ce problème peut affecter la sécurité des utilisateurs en limitant la détection et le signalement des comportements suspects. Les services liés aux alertes de sécurité sont donc partiellement indisponibles. En attendant, évitez de partager des informations sensibles et surveillez les co"
+        },
+        {
+          "a": "2026-10-12T22:35:20.833Z",
+          "etat": "identifie",
+          "texte": "La cause est identifiee, un correctif est en preparation."
+        },
+        {
+          "a": "2026-10-12T22:36:12.692Z",
+          "etat": "surveille",
+          "texte": "Un correctif est en place, la situation est sous surveillance."
+        },
+        {
+          "a": "2026-10-12T22:37:15.266Z",
+          "etat": "resolu",
+          "texte": "Incident resolu."
+        }
+      ]
+    },
     {
       "id": "c67d41f7-4081-4454-beb9-0b377f876ad2",
       "source": "admin",
