@@ -1,109 +1,132 @@
 {
-  "genereA": "2026-11-05T08:28:40.229Z",
+  "genereA": "2026-11-05T16:38:39.656Z",
   "etat": "degrade",
-  "resume": "Arrêt des services Nexium jusqu'à nouvelle ordre",
+  "resume": "Maintenance terminée et services rétablis",
   "composants": [
     {
       "cle": "client",
       "nom": "Mise a jour du client",
       "detail": "Le fichier que chaque client retelecharge au demarrage",
       "critique": true,
-      "latenceMs": 560,
+      "latenceMs": 688,
       "info": "v206",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-11-05T08:28:40.229Z"
+      "verifieA": "2026-11-05T16:38:39.656Z"
     },
     {
       "cle": "blocklist",
       "nom": "Protection des liens",
       "detail": "La base de domaines malveillants",
       "critique": true,
-      "latenceMs": 574,
+      "latenceMs": 1064,
       "info": "439 295 domaines",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-11-05T08:28:40.229Z"
+      "verifieA": "2026-11-05T16:38:39.656Z"
     },
     {
       "cle": "banlist",
       "nom": "Liste de bannissement",
       "detail": "Le verrou des comptes bannis",
       "critique": false,
-      "latenceMs": 100,
+      "latenceMs": 84,
       "info": "1 entree(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-11-05T08:28:40.229Z"
+      "verifieA": "2026-11-05T16:38:39.656Z"
     },
     {
       "cle": "changelog",
       "nom": "Notes de version",
       "detail": "Ce que le client affiche apres une mise a jour",
       "critique": false,
-      "latenceMs": 170,
+      "latenceMs": 128,
       "info": "38 version(s)",
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-11-05T08:28:40.229Z"
+      "verifieA": "2026-11-05T16:38:39.656Z"
     },
     {
       "cle": "musique",
       "nom": "Bibliotheque musicale",
       "detail": "Les pistes proposees dans Nexium Music",
       "critique": false,
-      "latenceMs": 117,
+      "latenceMs": 104,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-11-05T08:28:40.229Z"
+      "verifieA": "2026-11-05T16:38:39.656Z"
     },
     {
       "cle": "sponsor",
       "nom": "Partenariats",
       "detail": "Le contenu de la page Sponsor",
       "critique": false,
-      "latenceMs": 124,
+      "latenceMs": 139,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-11-05T08:28:40.229Z"
+      "verifieA": "2026-11-05T16:38:39.656Z"
     },
     {
       "cle": "alertes",
       "nom": "Alertes et administration",
       "detail": "Ce qui fait apparaitre un bandeau dans le client",
       "critique": true,
-      "latenceMs": 653,
+      "latenceMs": 1076,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-11-05T08:28:40.229Z"
+      "verifieA": "2026-11-05T16:38:39.656Z"
     },
     {
       "cle": "signalements",
       "nom": "Signalements",
       "detail": "L envoi d un domaine suspect depuis le client",
       "critique": false,
-      "latenceMs": 253,
+      "latenceMs": 322,
       "etat": "operationnel",
       "_echecs": 0,
-      "verifieA": "2026-11-05T08:28:40.229Z"
+      "verifieA": "2026-11-05T16:38:39.656Z"
     }
   ],
   "incidents": [
+    {
+      "id": "6f3b3ee3-33a4-4b28-9517-43c5cdbe3fec",
+      "source": "admin",
+      "composant": "client",
+      "titre": "Maintenance terminée et services rétablis",
+      "gravite": "info",
+      "etat": "enquete",
+      "debut": "2026-11-05T10:51:54.027261+00:00",
+      "fin": null,
+      "resume": "La période de maintenance est maintenant terminée. Tous les services Discord sont de nouveau opérationnels. Aucun impact n'est à signaler pour les utilisateurs. Vous pouvez reprendre vos activités habituelles sans restriction.",
+      "maj": [
+        {
+          "a": "2026-11-05T10:51:55.372Z",
+          "etat": "enquete",
+          "texte": "La période de maintenance est maintenant terminée. Tous les services Discord sont de nouveau opérationnels. Aucun impact n'est à signaler pour les utilisateurs. Vous pouvez reprendre vos activités habituelles sans restriction."
+        }
+      ]
+    },
     {
       "id": "d1596d7f-f3f7-43ff-abbe-87990944eb53",
       "source": "admin",
       "composant": "Nexium",
       "titre": "Arrêt des services Nexium jusqu'à nouvelle ordre",
       "gravite": "maintenance",
-      "etat": "enquete",
+      "etat": "resolu",
       "debut": "2026-10-29T19:23:15.92624+00:00",
-      "fin": null,
+      "fin": "2026-11-05T10:51:31.111+00:00",
       "resume": "Les services Nexium sont actuellement interrompus. Aucun accès n'est possible pour les utilisateurs et le développement du client est suspendu. Nous vous invitons à ne pas tenter de vous connecter et à rester attentif aux futures communications. Nous vous tiendrons informés dès que le service sera réactivé.",
       "maj": [
         {
           "a": "2026-10-29T19:23:16.345Z",
           "etat": "enquete",
           "texte": "Les services Nexium sont actuellement interrompus. Aucun accès n'est possible pour les utilisateurs et le développement du client est suspendu. Nous vous invitons à ne pas tenter de vous connecter et à rester attentif aux futures communications. Nous vous tiendrons informés dès que le service sera réactivé."
+        },
+        {
+          "a": "2026-11-05T10:51:31.111Z",
+          "etat": "resolu",
+          "texte": "Incident resolu."
         }
       ]
     },
